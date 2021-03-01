@@ -1,0 +1,171 @@
+.container {
+	position: relative;
+	animation: blend-in 2.0s;
+	animation-fill-mode: forwards;
+}
+
+#bgimage {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	content:url(../img/exoplanets-disks.jpg);
+	z-index: -1;
+	-webkit-animation: bgin 1s;
+	animation-fill-mode: forwards;
+}
+
+#bgimage:hover {
+	-webkit-animation: bgout 1s;
+	animation-fill-mode: forwards;
+}
+
+.clickables {
+	position: absolute;
+	z-index: 1;
+	animation: shrink-element 0.5s;
+	animation-fill-mode: forwards;
+}
+
+.comets{
+}
+
+.comet-01 {
+	content:url(../img/comet-01.png);
+	top: 149px;
+	left: 647px;
+}
+
+.comet-02 {
+	content:url(../img/comet-02.png);
+	top: 184;
+	left: 1045px;
+}
+
+#comet-text {
+	position: absolute;
+	top: 77px;
+	left: 1150px;
+	opacity: 0.0;
+	content:url(../img/comet-text.png);
+	animation: blend-out 0.5s;
+	animation-fill-mode: forwards;
+}
+
+.comets:hover .comet-01{
+	animation-name: grow-element;
+	animation-duration: 1.0s;
+	animation-fill-mode: forwards;
+}
+
+.comets:hover .comet-02{
+	animation-name: grow-element;
+	animation-duration: 1.0s;
+	animation-fill-mode: forwards;
+}
+
+.comets:hover #comet-text{
+	animation-name: blend-in;
+	animation-duration: 1.0s;
+	animation-fill-mode: forwards;
+}
+
+.protoplanets{
+}
+
+.protoplanet-01 {
+	content:url(../img/protoplanet.png);
+	top: 456px;
+	left: 1049px;
+}
+
+#protoplanet-text {
+	position: absolute;
+	top: 761px;
+	left: 1020px;
+	opacity: 0.0;
+	content:url(../img/protoplanet-text.png);
+	animation: blend-out 0.5s;
+	animation-fill-mode: forwards;
+}
+
+.protoplanets:hover .protoplanet-01{
+	animation-name: grow-element;
+	animation-duration: 0.5s;
+	animation-fill-mode: forwards;
+	z-index: 2;	
+}
+
+.protoplanets:hover #protoplanet-text{
+	animation-name: blend-in;
+	animation-duration: 1.0s;
+	animation-fill-mode: forwards;
+}
+
+
+.asteroids{
+}
+
+.asteroid-01 {
+	content:url(../img/asteroids.png);
+	top: 569px;
+	left: 668px;
+}
+
+#asteroids-text {
+	position: absolute;
+	top: 800px;
+	left: 472px;
+	opacity: 0.0;
+	content:url(../img/asteroids-text.png);
+	animation: blend-out 0.5s;
+	animation-fill-mode: forwards;
+}
+
+.asteroids:hover .asteroid-01{
+	animation-name: grow-element;
+	animation-duration: 0.5s;
+	animation-fill-mode: forwards;
+}
+
+.asteroids:hover #asteroids-text{
+	animation-name: blend-in;
+	animation-duration: 1.0s;
+	animation-fill-mode: forwards;
+}
+
+
+
+@-webkit-keyframes bgin {
+    from { -webkit-filter:grayscale(1.0); }
+    to { -webkit-filter:grayscale(0.0);}
+}
+
+@-webkit-keyframes bgout {
+    0%   { -webkit-filter:grayscale(0.0); }
+    100% { -webkit-filter:grayscale(1.0); }
+}
+
+@-webkit-keyframes bgin {
+    from { -webkit-filter:grayscale(1.0); }
+    to { -webkit-filter:grayscale(0.0);}
+}
+
+@keyframes grow-element {
+    from   { transform:scale(1.0); }
+    to { transform:scale(2.0); }
+}
+
+@keyframes shrink-element {
+    from   { transform:scale(2.0); }
+    to { transform:scale(1.0); }
+}
+
+@keyframes blend-in {
+	from { opacity:0.0; }
+	to	{ opacity:1.0; }
+}
+
+@keyframes blend-out {
+	from { opacity:1.0; }
+	to	{ opacity:0.0; }
+}
