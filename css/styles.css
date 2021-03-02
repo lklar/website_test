@@ -1,104 +1,100 @@
 .container {
 	position: relative;
-	animation: blend-in 2.0s;
-	animation-fill-mode: forwards;
+	width: 100%;
+	padding-top: 66.6666%;
+	animation: blend-in 2.0s forwards;
 }
 
 #bgimage {
-	position: absolute;
-	top: 0px;
-	left: 0px;
 	content:url(../img/exoplanets-disks.jpg);
+	position: absolute;
+	left:0;
+	top: 0;   
+	width: 100%;
 	z-index: -1;
-	-webkit-animation: bgin 1s;
-	animation-fill-mode: forwards;
+	-webkit-animation: bgin 1s forwards;
 }
 
 #bgimage:hover {
-	-webkit-animation: bgout 1s;
-	animation-fill-mode: forwards;
+	-webkit-animation: bgout 1s forwards;
 }
 
 .clickables {
-	position: absolute;
 	z-index: 1;
-	animation: shrink-element 0.5s;
-	animation-fill-mode: forwards;
+	animation: shrink-element 0.5s forwards;
 }
 
-.comets{
+.comets {
 }
 
 .comet-01 {
 	content:url(../img/comet-01.png);
-	top: 149px;
-	left: 647px;
+	position: absolute;
+	width: 12.73%;
+	top: 12.95%;
+	left: 37.45%;
 }
 
 .comet-02 {
 	content:url(../img/comet-02.png);
-	top: 184;
-	left: 1045px;
+	position: absolute;
+	width: 7.12%;
+	top: 15.95%;
+	left: 60.5%;
 }
 
 #comet-text {
-	position: absolute;
-	top: 77px;
-	left: 1150px;
-	opacity: 0.0;
 	content:url(../img/comet-text.png);
-	animation: blend-out 0.5s;
-	animation-fill-mode: forwards;
+	position: absolute;
+	width: 31.71%;
+	top: 7%;
+	left: 65%;
+	opacity: 0.0;
+	animation: blend-out 0.5s forwards;
 }
 
 .comets:hover .comet-01{
-	animation-name: grow-element;
-	animation-duration: 1.0s;
-	animation-fill-mode: forwards;
+	animation: grow-element 1.0s forwards;
 }
 
 .comets:hover .comet-02{
-	animation-name: grow-element;
-	animation-duration: 1.0s;
-	animation-fill-mode: forwards;
+	animation: grow-element 1.0s forwards;
 }
 
 .comets:hover #comet-text{
-	animation-name: blend-in;
-	animation-duration: 1.0s;
-	animation-fill-mode: forwards;
+	animation: blend-in 1.0s forwards;
 }
+
 
 .protoplanets{
 }
 
 .protoplanet-01 {
 	content:url(../img/protoplanet.png);
-	top: 456px;
-	left: 1049px;
+	position: absolute;
+	width: 11.63%;
+	top: 39.55%;
+	left: 60.7%;
 }
 
 #protoplanet-text {
-	position: absolute;
-	top: 761px;
-	left: 1020px;
-	opacity: 0.0;
 	content:url(../img/protoplanet-text.png);
-	animation: blend-out 0.5s;
-	animation-fill-mode: forwards;
+	position: absolute;
+	width: 34.38%;
+	top: 61%;
+	left: 62%;
+	opacity: 0.0;
+	animation: blend-out 0.5s forwards;
 }
 
 .protoplanets:hover .protoplanet-01{
-	animation-name: grow-element;
-	animation-duration: 0.5s;
-	animation-fill-mode: forwards;
-	z-index: 2;	
+	animation: grow-element 1.0s forwards;
+	z-index: 2;
 }
 
+
 .protoplanets:hover #protoplanet-text{
-	animation-name: blend-in;
-	animation-duration: 1.0s;
-	animation-fill-mode: forwards;
+	animation: blend-in 1.0s forwards;
 }
 
 
@@ -107,32 +103,30 @@
 
 .asteroid-01 {
 	content:url(../img/asteroids.png);
-	top: 569px;
-	left: 668px;
+	position: absolute;
+	width: 23.78%;
+	top: 49.40%;
+	left: 38.65%;
 }
 
-#asteroids-text {
+#asteroid-text {
+	content:url(../img/protoplanet-text.png);
 	position: absolute;
-	top: 800px;
-	left: 472px;
-	opacity: 0.0;
-	content:url(../img/asteroids-text.png);
-	animation: blend-out 0.5s;
-	animation-fill-mode: forwards;
+	width: 31.71%;
+	top: 40%;
+	left: 16%;
+	opacity: 1.0;
+	animation: blend-out 0.5s forwards;
 }
 
 .asteroids:hover .asteroid-01{
-	animation-name: grow-element;
-	animation-duration: 0.5s;
-	animation-fill-mode: forwards;
+	animation: grow-element 1.0s forwards;
 }
 
-.asteroids:hover #asteroids-text{
-	animation-name: blend-in;
-	animation-duration: 1.0s;
-	animation-fill-mode: forwards;
-}
 
+.asteroids:hover #asteroid-text{
+	animation: blend-in 1.0s forwards;
+}
 
 
 @-webkit-keyframes bgin {
@@ -152,11 +146,11 @@
 
 @keyframes grow-element {
     from   { transform:scale(1.0); }
-    to { transform:scale(2.0); }
+    to { transform:scale(1.6); }
 }
 
 @keyframes shrink-element {
-    from   { transform:scale(2.0); }
+    from   { transform:scale(1.6); }
     to { transform:scale(1.0); }
 }
 
@@ -169,3 +163,6 @@
 	from { opacity:1.0; }
 	to	{ opacity:0.0; }
 }
+
+
+
