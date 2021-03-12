@@ -1,0 +1,14 @@
+#bgimage{
+    content:url(../img/Comet_Hale-Bopp.png);
+	position: absolute;
+	left:0;
+	top: 0;   
+	width: 100%;
+	z-index: -1;
+}
+.container {
+	position: relative;
+	width: 100%;
+	padding-top: 100%;
+
+}
