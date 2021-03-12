@@ -1,0 +1,206 @@
+body {
+    background-color: black;
+    color:white;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+}
+
+.container {
+	position: relative;
+	width: 100%;
+	padding-top: 66.6666%;
+	animation: blend-in 2.0s forwards;
+}
+
+
+#main_title {
+    content:url(../img/protoplanet-title.png);
+    position: absolute;
+	width: 50%;
+    left:25%;
+	top: 0;
+}
+
+#main_image {
+	content:url(../img/planet-forming.jpg); 
+    width: 95%;
+    margin-left: 2.5%;
+    z-index: -1;
+	-webkit-animation: bgout 1s forwards;
+}
+
+#main_image:hover {
+	-webkit-animation: bgin 1s forwards;
+}
+
+#image_collision {
+	content:url(../img/collision3.jpg);
+	width: 95%;
+    margin-left: 2.5%;
+	-webkit-animation: bgout 1s forwards;
+}
+
+#image_collision:hover {
+	-webkit-animation: bgin 1s forwards;
+}
+
+#image_pebble_acc {
+	content:url(../img/pebble-accretion.jpg);
+	width: 95%;
+    margin-left: 2.5%;
+	-webkit-animation: bgout 1s forwards;
+}
+
+#image_pebble_acc:hover {
+	-webkit-animation: bgin 1s forwards;
+}
+
+.clickables {
+	z-index: 1;
+	animation: shrink-element 0.5s forwards;
+}
+
+.collision {
+}
+
+.collision-01 {
+	content:url(../img/comet-01.png);
+	position: absolute;
+	width: 12.73%;
+	top: 12.95%;
+	left: 37.45%;
+}
+
+.comet-02 {
+	content:url(../img/comet-02.png);
+	position: absolute;
+	width: 7.12%;
+	top: 15.95%;
+	left: 60.5%;
+}
+
+#comet-text {
+	content:url(../img/comet-text.png);
+	position: absolute;
+	width: 31.71%;
+	top: 7%;
+	left: 65%;
+	opacity: 0.0;
+	animation: blend-out 0.5s forwards;
+}
+
+.comets:hover .comet-01{
+	animation: grow-element 1.0s forwards;
+}
+
+.comets:hover .comet-02{
+	animation: grow-element 1.0s forwards;
+}
+
+.comets:hover #comet-text{
+	animation: blend-in 1.0s forwards;
+}
+
+
+.protoplanets{
+}
+
+.protoplanet-01 {
+	content:url(../img/protoplanet.png);
+	position: absolute;
+	width: 11.63%;
+	top: 39.55%;
+	left: 60.7%;
+}
+
+#protoplanet-text {
+	content:url(../img/protoplanet-text.png);
+	position: absolute;
+	width: 34.38%;
+	top: 61%;
+	left: 62%;
+	opacity: 0.0;
+	animation: blend-out 0.5s forwards;
+}
+
+.protoplanets:hover .protoplanet-01{
+	animation: grow-element 1.0s forwards;
+	z-index: 2;
+}
+
+
+.protoplanets:hover #protoplanet-text{
+	animation: blend-in 1.0s forwards;
+}
+
+
+.asteroids{
+}
+
+.asteroid-01 {
+	content:url(../img/asteroids.png);
+	position: absolute;
+	width: 23.78%;
+	top: 49.40%;
+	left: 38.65%;
+}
+
+#asteroid-text {
+	content:url(../img/asteroid-text.png);
+	position: absolute;
+	width: 31.71%;
+	top: 40%;
+	left: 16%;
+	opacity: 1.0;
+	animation: blend-out 0.5s forwards;
+}
+
+.asteroids:hover .asteroid-01{
+	animation: grow-element 1.0s forwards;
+}
+
+
+.asteroids:hover #asteroid-text{
+	animation: blend-in 1.0s forwards;
+}
+
+
+@-webkit-keyframes bgin {
+    from { -webkit-filter:grayscale(1.0); }
+    to { -webkit-filter:grayscale(0.0);}
+}
+
+@-webkit-keyframes bgout {
+    0%   { -webkit-filter:grayscale(0.0); }
+    100% { -webkit-filter:grayscale(1.0); }
+}
+
+@-webkit-keyframes bgin {
+    from { -webkit-filter:grayscale(1.0); }
+    to { -webkit-filter:grayscale(0.0);}
+}
+
+@keyframes grow-element {
+    from   { transform:scale(1.0); }
+    to { transform:scale(1.6); }
+}
+
+@keyframes shrink-element {
+    from   { transform:scale(1.6); }
+    to { transform:scale(1.0); }
+}
+
+@keyframes blend-in {
+	from { opacity:0.0; }
+	to	{ opacity:1.0; }
+}
+
+@keyframes blend-out {
+	from { opacity:1.0; }
+	to	{ opacity:0.0; }
+}
+
+
+
