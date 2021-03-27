@@ -10,6 +10,8 @@ body {
 canvas {
     position: fixed;
     display: block;
+    /* transition: "fade-in";
+    transition-delay: 100ms; */
     /* margin: 0em 0em; */
     /* width: 100vw; */
     /* height: auto; */

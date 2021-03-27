@@ -41,7 +41,6 @@ window.addEventListener('scroll', () => {
     frameCount - 1,
     Math.ceil(scrollFraction * frameCount)
   );
-  
   requestAnimationFrame(() => updateImage(frameIndex + 1))
 });
 
