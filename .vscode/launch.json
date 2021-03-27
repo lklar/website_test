@@ -8,6 +8,13 @@
         "type": "firefox",
         "request": "launch",
         "reAttach": true,
+        "name": "Launch aos-dev.html",
+        "file": "${workspaceFolder}/html/aos-dev.html"
+    },
+    {
+        "type": "firefox",
+        "request": "launch",
+        "reAttach": true,
         "name": "Launch aos-test.html",
         "file": "${workspaceFolder}/html/aos-test.html"
     },

@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 1.3rem;
+    background: #f9f9f9
+}
+
+.container {
+    /* max-width: 1100px; */
+    height: 100%;
+    /* width: 100%; */
+    margin: auto;
+    overflow: auto;
+}
+
+img {
+    width: 100%;
+}
+
+.card {
+    position: fixed;
+}
+
+
+
