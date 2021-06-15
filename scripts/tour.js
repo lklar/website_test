@@ -46,11 +46,11 @@ function myMain(){
     img.src="img/exoplanets-disks.jpg";
     img.onload=function(){
         ctx.drawImage(this,0,0);
-        addCanvasForArea("dust", "img/IDP.jpg", this.width, this.height);
-        addCanvasForArea("pebbles", "img/Pebble_Labor_2.jpg", this.width, this.height);
-        addCanvasForArea("planetesimal", "img/arrokoth_cut.png", this.width, this.height);
-        addCanvasForArea("transition0", "img/transition_0.png", this.width, this.height);
-        addCanvasForArea("transition1", "img/transition_1.png", this.width, this.height);
+        addCanvasForArea("dust", "./img/IDP.jpg", this.width, this.height);
+        addCanvasForArea("pebbles", "./img/Pebble_Labor_2.jpg", this.width, this.height);
+        addCanvasForArea("planetesimal", "./img/arrokoth_cut.png", this.width, this.height);
+        addCanvasForArea("transition0", "./img/transition_0.png", this.width, this.height);
+        addCanvasForArea("transition1", "./img/transition_1.png", this.width, this.height);
         
         maskSpeed /= pathLengths[0];
         let tl = anime.timeline({
