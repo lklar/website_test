@@ -1,7 +1,9 @@
 :root {
-    --backgroundOpacity: 1.0;
-    --clickablesOpacity: 0.0;
-    --dashLength: 10.0;
+    --dashLength: 100.0;
+}
+
+a {
+    color:rgb(136, 136, 255);
 }
 
 .container{
@@ -19,150 +21,27 @@
     pointer-events: none;
 }
 
+#mySVG{
+    z-index: 1;
+}
+
+#displayPaths > *{
+    fill: none;
+    stroke: white;
+    stroke-width: 10px;
+    stroke-linecap: round;
+    stroke-dasharray: var(--dashLength) var(--dashLength);
+    /* filter: blur(3px); */
+    filter: drop-shadow(0 0 0.25vw white);
+    /* animation: testAnim 1s linear forwards infinite; */
+}
+
+mask > path {
+    fill: none;
+    stroke: white;
+    stroke-width: 30px;
+}
+
 #imgCanvases > canvas{
     z-index: 0;
 }
-
-#myCanvas {
-    opacity: var(--backgroundOpacity);
-}
-
-#displayPath {
-    fill: none;
-    stroke: white;
-    stroke-width: 10px;
-} 
-
-#pathMask {
-    fill: none;
-    stroke: white;
-    stroke-width: 10px;
-    /* stroke-dasharray: 484; */
-  /* stroke-dashoffset: 1152; */
-  /* animation: dash 8s linear forwards; */
-}
-
-#paths{
-    fill: none;
-    stroke: white;
-    stroke-width: 10px;
-    stroke-linecap: round;
-    /* filter: blur(3px); */
-    filter: drop-shadow(0 0 0.5vw white);
-    animation: testAnim 1s linear forwards infinite;
-}
-
-#paths > path {
-    position:absolute;
-    z-index: 6;
-}
-
-#imgCanvases > canvas {
-    opacity: 0;
-}
-
-#clickableAreas{
-    fill: transparent;
-    stroke: transparent;
-    stroke-linecap: round;
-    stroke-width: 200px;
-}
-
-#infoText{
-    position:absolute;
-    left:0;
-    top:0;
-    width: 100%;
-    height: 100%;
-    color: white;
-    font-size: 3vw;
-    z-index: 5;
-    pointer-events: none;
-}
-
-/* @keyframes dash {
-  to { 
-    stroke-dashoffset: 0; 
-  } 
-}  */
-
-#sunEnclosure {
-    /* transform: scale(2.0) translate3d(10px, 10px, 10px) rotateX(78deg) rotateY(10deg); */
-    /* animation: testAnim 1s linear infinite; */
-}
-
-#cometEnclosure {
-    /* transform: rotateX(78deg) rotateY(10deg); */
-    /* transform: rotateX(78deg) rotateY(10deg); */
-    /* animation: testAnim 1s linear infinite; */
-}
-
-@keyframes testAnim {
-    from {stroke-dashoffset: var(--dashLength);}
-    to   {stroke-dashoffset: 0;}
-}
-
-/* #myCanvas{
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    z-index: 0;
-    opacity: var(--backgroundOpacity);
-    z-index: 0;
-}
-
-#mySVG{
-    position:absolute;
-    top: 0;
-    z-index:4;
-    width:100%;
-    height:100%;
-    pointer-events:none;
-} */
-
-/* #clickablesContainer > canvas{
-    position:absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    opacity: var(--clickablesOpacity);
-    transform: scale(1.0);
-    z-index:1;
-}
-
-@keyframes zoomIn {
-    from {transform: scale(1.0);}
-    to   {transform: scale(1.5);}
-}
-
-@keyframes zoomNormal {
-    from {transform: scale(1.5);}
-    to   {transform: scale(1.0);}
-}
-
-
-@keyframes pathFlow {
-    from {stroke-dashoffset: 0;}
-    to   {stroke-dashoffset: 0;}
-} */
-
-
-
-/* #mySVG > path, ellipse {
-    fill:none;
-    stroke:white;
-    stroke-dasharray: 1 1;
-    animation: pathFlow 3s infinite cubic-bezier(0.35, 0.5, 0.65, 0.5) reverse;
-} */
-
-/* #svgTest{
-    width:900px;
-    height:900px;
-}
-
-.test {
-    transform-origin: 25% 25%;
-    transform:rotateX(60deg);
-    
-} */

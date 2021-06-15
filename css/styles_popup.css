@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
+
+:root {
+    --modalScale: 1.0;
+}
+
+body{
+	font-family: 'Poppins', sans-serif;
+	font-weight: 400;
+	font-size: 15px;
+	line-height: 1.7;
+	color: #d7d8e4;
+  	background-color: #fff;
+    overflow: hidden;
+}
+p{
+	font-family: 'Poppins', sans-serif;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 1.7;
+	color: #1f2029;
+}
+
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 250ms ease, transform 300ms ease;
+}
+
+.popup-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(31,32,41,.75);
+}
+
+.modal-wrap {
+  position: absolute;
+  width: 960px;
+  border-radius: 4px;
+  background-color: rgb(0, 0, 0);
+  box-shadow: 0 25px 25px 0 rgba(19, 16, 17, 0.25);
+  opacity: 1.0;
+  resize: both;
+  transform: scale(var(--modalScale));
+  user-select: none;
+}
+
+
+.modal-wrap img {
+  display: inline;
+  width: 90%;
+  max-width: 500px;
+  min-width: 200px;
+  height: auto;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.modal-wrap ul {
+  color: #d7d8e4;
+  font-size: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.modal-wrap li {
+	color: #d7d8e4;
+	font-size: 20px;
+	padding-left: 40px;
+	padding-right: 40px;
+  }
+
+.modal-wrap p {
+	color: #d7d8e4;
+	font-size: 14px;
+	margin-left: 5px;
+	margin-top: 0px;
+  }
+.modal-wrap h1 {
+	margin-left: 20px;
+	margin-top: 10px;
+}
+
+#mySVG:hover ~ #modal .modal-wrap{
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 250ms 500ms ease, transform 350ms 500ms ease;
+}
+
+.table-cell:nth-child(1) {
+	background: transparent
+}
+.table-cell:nth-child(2) {background: transparent}
+.table-cell:nth-child(3) {background: transparent}
+
+@media (min-width: 0em) {
+.table { 
+   display: table;
+   border-spacing: 0.5em;
+}
+.table-row {display: table-row; }
+.table-cell {display: table-cell; }
+}

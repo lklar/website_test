@@ -1,342 +1,233 @@
-function setUpSVG(width, height)
-{
-    let baseVal = document.getElementById("mySVG").viewBox.baseVal;
-    baseVal.width = width;
-    baseVal.height = height;
-}
+import anime from './anime.es.js';
 
-function parseStringToTransformInfo2d(str)
-{
-    // str is of form "matrix(a, b, c, d, tx, ty)"
-    // extract a1 etc. to an array of strings with this:
-    let strArr = str.substr(7, str.length - 8).split(', ');
-    return r = {
-        rotMatrix : [[parseFloat(strArr[0]),parseFloat(strArr[1]),0],
-                        [parseFloat(strArr[2]),parseFloat(strArr[3]),0],
-                        [0,0,1]],
-        translation : [parseFloat(strArr[4]),parseFloat(strArr[5]),0],
-        scale : 1
-    };
-
-}
-
-function parseStringToTransformInfo3d(str)
-{
-    // str is of form "matrix3d(a1, b1, c1, d1, ..., a4, b4, c4, d4)"
-    // extract a1 etc. to an array of strings with this:
-    let strArr = str.substr(9, str.length - 10).split(', ');
-    const r = {
-        rotMatrix : [[0,1,2],
-                        [4,5,6],
-                        [8,9,10]],
-        translation : [12,13,14],
-        scale : 15
-    };
-
-    for(const row in r.rotMatrix)
-    {
-        for(const col in r.rotMatrix[row])
-        {
-            r.rotMatrix[row][col] = parseFloat(strArr[r.rotMatrix[row][col]]);
-        }
-    }
-
-    for(const id in r.translation)
-    {
-        r.translation[id] = parseFloat(strArr[r.translation[id]]);
-    }
-
-    r.scale = parseFloat(strArr[r.scale]);
-    return r;
-
-}
-
-function extractTransformInfo(element)
-{
-    let matrixString = getComputedStyle(element).transform;
-    switch(matrixString.substr(0,7))
-    {
-        case "none":
-            return {
-                rotMatrix : [[1,0,0],[0,1,0],[0,0,1]],
-                translation : [0,0,0],
-                scale : 1
-            };
-            break;
-
-        case "matrix(":
-            return parseStringToTransformInfo2d(matrixString);
-            break;
-
-        case "matrix3":
-            return parseStringToTransformInfo3d(matrixString);
-            break;
-
-        default:
-            throw "Error while extracting transform info for element " + element;
-    }
-}
-
-function applyTransformToVec(vec, transformInfo)
-{
-    if (vec.length !== transformInfo.rotMatrix.length)
-    {
-        throw "Vector and matrix column length are not equal, cannot multiply";
-    }
-    let outVec = [0,0,0];
-    for(let row = 0; row < transformInfo.rotMatrix.length; ++row)
-    {
-        for(let col = 0; col < transformInfo.rotMatrix.length; ++col)
-        {
-            outVec[row] += vec[col] * transformInfo.rotMatrix[row][col];
-        }
-        outVec[row] += transformInfo.translation[row];
-        outVec[row] = outVec[row] * transformInfo.scale;
-    }
-
-    return outVec;
-}
-
-function pointOnEllipse(cx, cy, rx, ry, angle)
-{
-    angle = angle % 360;
-    let dx = rx * ry / (Math.sqrt(Math.pow(ry, 2) + Math.pow(rx * Math.tan(angle * Math.PI / 180), 2)));
-    let dy = Math.sqrt(1 - Math.pow(dx / rx, 2)) * ry;
-    dx = ((-90 < angle) && (angle < 90)) ? dx : -dx;
-    dy = (angle < 180) ? dy : -dy;
-    return {x : cx + dx, y : cy + dy};
-}
-
-function addMask(pathD, maskName)
-{
-    let newPathElement = document.createElementNS("http://www.w3.org/2000/svg","path");
-    newPathElement.setAttribute("d", pathD);
-    newPathElement.setAttribute("id", maskName);
-    newPathElement.setAttribute("stroke-dasharray",`${newPathElement.getTotalLength()}`);
-    document.getElementById("pathMask").appendChild(newPathElement);
-    return newPathElement;
-}
-
-function addPath(pathD, pathName)
-{
-    let newPathElement = document.createElementNS("http://www.w3.org/2000/svg","path");
-    newPathElement.setAttribute("d", pathD);
-    newPathElement.setAttribute("id", pathName);
-    newPathElement.setAttribute("mask", "url(#pathMask)");
-    newPathElement.style.transition = "opacity 1s";
-    document.getElementById("paths").appendChild(newPathElement);
-    return newPathElement;
-}
-
-function addArea(pathD, areaName)
-{
-    let newPathElement = document.createElementNS("http://www.w3.org/2000/svg","path");
-    newPathElement.setAttribute("d", pathD);
-    newPathElement.setAttribute("id", areaName);
-    document.getElementById("clickableAreas").appendChild(newPathElement);
-    return newPathElement;
-}
-
-function enclosurePath(ai)
-{
-    let P1 = pointOnEllipse(ai.cx, ai.cy, ai.rx, ai.ry, ai.alphaStart);
-    let P2 = pointOnEllipse(ai.cx, ai.cy, ai.rx, ai.ry, ai.alphaStart + 270);
-    // direction flag
-    let f = ai.direction === "anti-clockwise" ? 0 : 1;
-    let myPath = `M ${P1.x} ${P1.y} A ${ai.rx} ${ai.ry} 0 ${f} ${f} ${P2.x} ${P2.y} A ${ai.rx} ${ai.ry} 0 ${!f*1} ${f} ${P1.x} ${P1.y}`
-    return myPath;
-}
-
-function connectionPath(ci)
-{
-    let startPoint = pointOnEllipse(ci.from.cx, ci.from.cy, ci.from.rx, ci.from.ry, ci.alpha1);
-    let endPoint = pointOnEllipse(ci.to.cx, ci.to.cy, ci.to.rx, ci.to.ry, ci.alpha2);
-    let x1 = startPoint.x + ci.dx1;
-    let y1 = startPoint.y + ci.dy1;
-    let x2 = endPoint.x + ci.dx2;
-    let y2 = endPoint.y + ci.dy2;
-    let myPath = `M ${startPoint.x} ${startPoint.y} C ${x1} ${y1} ${x2} ${y2} ${endPoint.x} ${endPoint.y}`;
-    return myPath;
-}
-
-function addAreaText(ai, startAlpha, offset)
-{
-    let rx = ai.rx + offset;
-    let ry = ai.ry * rx / ai.rx;
-    let P1 = pointOnEllipse(ai.cx, ai.cy, rx, ry, 180);
-    let P2 = pointOnEllipse(ai.cx, ai.cy, rx, ry, 0);
-    let pathD = `M ${P1.x} ${P1.y} A ${ai.rx} ${ai.ry} 0 1 1 ${P2.x} ${P2.y} A ${ai.rx} ${ai.ry} 0 0 1 ${P1.x} ${P1.y}`
-    let pathElement = document.createElementNS("http://www.w3.org/2000/svg","path");
-    pathElement.setAttribute("id", `${ai.name}TextPath`);
-    pathElement.setAttribute("d", pathD);
-    document.getElementById("textPaths").appendChild(pathElement);
-    let textElement = document.createElementNS("http://www.w3.org/2000/svg","text");
-    textElement.setAttribute("id", `${ai.name}Text`);
-    document.getElementById("svgText").appendChild(textElement);
-    let textPathElement = document.createElementNS("http://www.w3.org/2000/svg","textPath");
-    textPathElement.setAttribute("href", `#${ai.name}TextPath`);
-    textPathElement.setAttribute("startOffset", `${startAlpha}%`);
-    textPathElement.innerHTML = ai.text;
-    textElement.appendChild(textPathElement);
-}
-
-function addConnectionText(ci, xOffset, yOffset, startOffset)
-{
-    let startPoint = pointOnEllipse(ci.from.cx + xOffset, ci.from.cy + yOffset, ci.from.rx, ci.from.ry, ci.alpha1);
-    let endPoint = pointOnEllipse(ci.to.cx + xOffset, ci.to.cy + yOffset, ci.to.rx, ci.to.ry, ci.alpha2);
-    let x1 = startPoint.x + ci.dx1;
-    let y1 = startPoint.y + ci.dy1;
-    let x2 = endPoint.x + ci.dx2;
-    let y2 = endPoint.y + ci.dy2;
-    let pathD = `M ${startPoint.x} ${startPoint.y} C ${x1} ${y1} ${x2} ${y2} ${endPoint.x} ${endPoint.y}`;
-    let pathElement = document.createElementNS("http://www.w3.org/2000/svg","path");
-    pathElement.setAttribute("id", `${ci.name}TextPath`);
-    pathElement.setAttribute("d", pathD);
-    document.getElementById("textPaths").appendChild(pathElement);
-    let textElement = document.createElementNS("http://www.w3.org/2000/svg","text");
-    textElement.setAttribute("id", `${ci.name}Text`);
-    document.getElementById("svgText").appendChild(textElement);
-    let textPathElement = document.createElementNS("http://www.w3.org/2000/svg","textPath");
-    textPathElement.setAttribute("href", `#${ci.name}TextPath`);
-    textPathElement.setAttribute("startOffset", `${startOffset}%`);
-
-    textPathElement.innerHTML = ci.text;
-    textElement.appendChild(textPathElement);
-}
-
-function addCanvasForArea(ai, imgName, width, height)
-{
-    let canvas = document.createElement("canvas");
-    canvas.setAttribute("id", `${ai.name}Canvas`);
-    canvas.width = width;
-    canvas.height = height;
+function myMain(){
+    let canvas = document.getElementById("myCanvas");
+    let ctx = canvas.getContext("2d");
+    let r = document.querySelector(':root');
     
-    rx = ai.rx * 0.9;
-    ry = ai.ry * 0.9;
+    let pathSpeed = 2000;
+    let maskSpeed = 2000;
+    let fadeInSpeed = 1000;
+
+    let ellipseCircumference = document.getElementById("displayPath0").getTotalLength();
+    let dashLength = ellipseCircumference / 32;
+    r.style.setProperty('--dashLength', `${dashLength}`)
+
+    let strokeDashoffsets = [0, 0.65, 0.65, 0.65, 0.65, 0.40, 0.40, 0.30, 1.70, 1.70, 1.3, 0.65];
+    let pathLengths = [];
+    for(let i = 0; i < 12; ++i)
+    {
+        anime({
+            targets : `#displayPath${i}`,
+            strokeDashoffset : [(2.0 + strokeDashoffsets[i]) * dashLength, strokeDashoffsets[i] * dashLength],
+            easing : 'linear',
+            duration : pathSpeed,
+            loop : true
+        });
+        let displayPath = document.getElementById(`displayPath${i}`);
+        let mask = document.createElementNS("http://www.w3.org/2000/svg", "mask");
+        mask.setAttribute("id", `mask${i}`);
+        let maskPath = document.createElementNS("http://www.w3.org/2000/svg","path");
+        maskPath.setAttribute("id", `mask${i}Path`);
+        maskPath.setAttribute("d", displayPath.getAttribute("d"));
+        document.getElementById("pathMasks").appendChild(mask);
+        mask.appendChild(maskPath);
+
+        let maskLength = maskPath.getTotalLength();
+        displayPath.setAttribute("mask", `url(#mask${i})`);
+        maskPath.setAttribute("stroke-dasharray", `${maskLength}`);
+        maskPath.setAttribute("stroke-dashoffset", `${maskLength}`);
+        pathLengths.push(maskLength);
+    }
+    
+    
+
+    var img=new Image();
+    img.src="img/exoplanets-disks.jpg";
+    img.onload=function(){
+        ctx.drawImage(this,0,0);
+        addCanvasForArea("dust", "img/IDP.jpg", this.width, this.height);
+        addCanvasForArea("pebbles", "img/Pebble_Labor_2.jpg", this.width, this.height);
+        addCanvasForArea("planetesimal", "img/arrokoth_cut.png", this.width, this.height);
+        addCanvasForArea("transition0", "img/transition_0.png", this.width, this.height);
+        addCanvasForArea("transition1", "img/transition_1.png", this.width, this.height);
+        
+        maskSpeed /= pathLengths[0];
+        let tl = anime.timeline({
+        easing: 'linear'
+        });
+        tl.pause();
+        tl.add({
+            // Fade in dust image + enclosure
+            targets : ['#displayPath0', '#dustCanvas'],
+            opacity : [0, 1],
+            duration : fadeInSpeed,
+            complete : function(anim){
+                document.getElementById("dustArea").style.pointerEvents = "all";
+                document.getElementById("displayPath0").removeAttribute("mask");
+            }
+        }).add({
+            // Draw path to transitional area 0
+            targets : '#mask1Path',
+            strokeDashoffset : [pathLengths[1], 0],
+            duration : pathLengths[1] * maskSpeed,
+            complete : function(anim){
+                document.getElementById("displayPath1").removeAttribute("mask");
+            }
+        }).add({
+            // Draw transitional area 0 enclosure
+            targets : ['#mask2Path', '#mask3Path'],
+            strokeDashoffset : [pathLengths[2], 0],
+            duration : pathLengths[2] * maskSpeed,
+            complete : function(anim){
+                document.getElementById("displayPath2").removeAttribute("mask");
+                document.getElementById("displayPath3").removeAttribute("mask");
+            }
+        }).add({
+            // Fade in transitional area 0 content
+            targets : ['#transition0Canvas'],
+            opacity : [0, 1],
+            duration : fadeInSpeed
+        }).add({
+            // Draw path to pebbles area
+            targets : '#mask4Path',
+            strokeDashoffset : [pathLengths[4], 0],
+            duration : pathLengths[4] * maskSpeed,
+            complete : function(anim){
+                document.getElementById("displayPath4").removeAttribute("mask");
+            }
+        }).add({
+            // Draw pebbles area
+            targets : ['#mask5Path', '#mask6Path'],
+            strokeDashoffset : [pathLengths[5], 0],
+            duration : pathLengths[5] * maskSpeed,
+            complete : function(anim){
+                document.getElementById("pebblesArea").style.pointerEvents = "all";
+                document.getElementById("displayPath5").removeAttribute("mask");
+                document.getElementById("displayPath6").removeAttribute("mask");
+            }
+        }).add({
+            // Fade in pebbles area content
+            targets : ['#pebblesCanvas'],
+            opacity : [0, 1],
+            duration : fadeInSpeed
+        }).add({
+            // Draw path to transitional area 1
+            targets : '#mask7Path',
+            strokeDashoffset : [pathLengths[7], 0],
+            duration : pathLengths[7] * maskSpeed,
+            complete : function(anim){
+                document.getElementById("displayPath7").removeAttribute("mask");
+            }
+        }).add({
+            // Draw transitional area 1
+            targets : ['#mask8Path', '#mask9Path'],
+            strokeDashoffset : [pathLengths[8], 0],
+            duration : pathLengths[8] * maskSpeed,
+            complete : function(anim){
+                document.getElementById("displayPath8").removeAttribute("mask");
+                document.getElementById("displayPath9").removeAttribute("mask");
+            }
+        }).add({
+            // Fade in transitional area 1 content
+            targets : ['#transition1Canvas'],
+            opacity : [0, 1],
+            duration : fadeInSpeed
+        }).add({
+            // Draw path to planetesimal area
+            targets : '#mask10Path',
+            strokeDashoffset : [pathLengths[10], 0],
+            duration : pathLengths[10] * maskSpeed,
+            complete : function(anim){
+                document.getElementById("displayPath10").removeAttribute("mask");
+            }
+        }).add({
+            // Draw planetesimal area
+            targets : '#mask11Path',
+            strokeDashoffset : [pathLengths[11], 0],
+            duration : pathLengths[11] * maskSpeed,
+            complete : function(anim){
+                document.getElementById("displayPath11").removeAttribute("mask");
+            }
+        }).add({
+            // Fade in planetesimal area content
+            targets : ['#planetesimalCanvas'],
+            opacity : [0, 1],
+            duration : fadeInSpeed,
+            complete : function(anim){
+                document.getElementById("planetesimalArea").style.pointerEvents = "all";
+                document.getElementById("displayPath0").removeAttribute("mask");
+            }
+        });
+        document.getElementById("mask0Path").setAttribute("stroke-dashoffset", "0");
+        tl.play();
+
+        let clickables = {
+            dust : {
+                area : document.getElementById("dustArea"),
+                popup : document.getElementById("dustPopup"),
+                background : document.getElementById("dustBackground")
+            },
+            pebbles : {
+                area : document.getElementById("pebblesArea"),
+                popup : document.getElementById("pebblesPopup"),
+                background : document.getElementById("pebblesBackground")
+            },
+            planetesimal : {
+                area : document.getElementById("planetesimalArea"),
+                popup : document.getElementById("planetesimalPopup"),
+                background : document.getElementById("planetesimalBackground")
+            }
+        }
+        for(let key in clickables)
+        {
+            clickables[key].area.addEventListener("click", function(){
+                clickables[key].popup.style.opacity = 1.0;
+                clickables[key].popup.style.pointerEvents = "all";
+                clickables[key].background.style.pointerEvents = "all";
+            });
+            clickables[key].background.addEventListener("click", function(){
+                clickables[key].popup.style.opacity = 0;
+                clickables[key].popup.style.pointerEvents = "none";
+                clickables[key].background.style.pointerEvents = "none";
+            });
+        }
+    }
+}
+
+function addCanvasForArea(areaName, imgName, canvasWidth, canvasHeight)
+{
+    let combinedPath = "";
+    let myArea = document.getElementById(`${areaName}Area`);
+    for(let child of myArea.children)
+    {
+        combinedPath += child.getAttribute("d");
+    }
+    let canvas = document.createElement("canvas");
+    canvas.setAttribute("id", `${areaName}Canvas`);
+    canvas.width = canvasWidth;
+    canvas.height = canvasHeight;
+    canvas.style["opacity"] = "1.0";
 
     document.getElementById("imgCanvases").appendChild(canvas);
-    
     let ctx = canvas.getContext("2d");
-    ctx.beginPath();
-    ctx.ellipse(ai.cx, ai.cy,
-                rx * 1.0, ry * 1.0,
-                0, 0, 2 * Math.PI);
+    let p = new Path2D(combinedPath);
     ctx.fillStyle='black';
-    ctx.filter = "blur(10px)";
-    ctx.fill();
+    ctx.filter = "blur(5px)";
+    ctx.fill(p);
     ctx.filter = "none";
     ctx.globalCompositeOperation = 'source-in'
     var img = new Image();
     img.src = imgName;
     img.onload=function(){
+        let bBox = myArea.getBBox();
         let pRatio = this.width / this.height;
-        let pWidth = 2 * rx;
-        let pHeight = pWidth / pRatio;
-        if(pRatio > rx / ry)
-        {
-            pHeight = 2 * ry;
-            pWidth = pHeight * pRatio;
-        }
-        ctx.drawImage(img, ai.cx - rx, ai.cy - ry, pWidth, pHeight);
-        // ctx.globalCompositeOperation = 'source-over'
-        // ctx.font = "50px Comic Sans MS, cursive, TSCu_Comic, sans-serif"; 
-        // ctx.lineWidth = 5; ctx.lineJoin = "round"; ctx.globalAlpha = 2/3;
-        // ctx.strokeStyle = ctx.fillStyle = "#FFFFFF";
-        // let textWidth = ctx.measureText(ai.name).width
-        // let x = ai.cx - 0.5 * textWidth;
-        // let y = ai.cy - ai.ry*1.1;
-        // ctx.fillText(ai.name, x, y);
+        if(pRatio > bBox.width / bBox.height)
+            ctx.drawImage(img, bBox.x, bBox.y, bBox.height * pRatio, bBox.height);
+        else
+            ctx.drawImage(img, bBox.x, bBox.y, bBox.width, bBox.width / pRatio);
     }
-
-    
-    
     return canvas;
 }
 
-function testCompleteFunc(timeline)
-{
-    console.log("dust mask is FINISHED");
-    timeline.play()
-}
-
-function addToTimeline(timeline, targetName, startPos, endPos, duration, onCompletion, atTime)
-{
-    let target = document.getElementById(targetName);
-    let targetLength = target.getTotalLength();
-    timeline.add({
-             targets: target,
-             strokeDashoffset: [(1-startPos) * targetLength, (1-endPos) * targetLength],
-             duration: duration,
-             complete: function(anim){
-                timeline.pause();
-             }
-    }, atTime);
-}
-
-function processDustClick()
-{
-    let paths = document.getElementById("paths").children;
-    for(let i = 0; i < paths.length; ++i)
-    {
-        paths[i].style.opacity = "0.5";
-    }
-    document.getElementById("dustPath").style.opacity = 1.0;
-    let infoElement = document.getElementById("infoText");
-    infoElement.innerHTML = "";
-    let title = document.createElement('div');
-    title.innerHTML = "Dust";
-    title.style.position = "absolute";
-    title.style.left = "5%";
-    title.style.top = "5%";
-    title.style.fontSize = "150%";
-    infoElement.appendChild(title);
-    let description = document.createElement('div');
-    description.innerHTML = "Dust is made up of SiO² grains";
-    description.style.position = "absolute";
-    description.style.right = "5%";
-    description.style.top = "5%";
-    description.style.fontSize = "75%";
-    infoElement.appendChild(description);
-    let img = document.createElement('img');
-    img.style.width = "25%";
-    img.style.position = "absolute";
-    img.style.right = "5%";
-    img.style.bottom = "5%";
-    img.src = "./img/dust.jpg";
-    infoElement.appendChild(img);
-}
-
-function processDustPebblesClick()
-{
-    let paths = document.getElementById("paths").children;
-    for(let i = 0; i < paths.length; ++i)
-    {
-        paths[i].style.opacity = "0.5";
-    }
-    document.getElementById("dustPebblesPath").style.opacity = 1.0;
-    let infoElement = document.getElementById("infoText");
-    infoElement.innerHTML = "";
-    let title = document.createElement('div');
-    title.innerHTML = "From dust to pebbles";
-    title.style.position = "absolute";
-    title.style.right = "5%";
-    title.style.top = "5%";
-    title.style.fontSize = "150%";
-    infoElement.appendChild(title);
-    let description = document.createElement('div');
-    description.innerHTML = "Dust aggregates to pebbles";
-    description.style.position = "absolute";
-    description.style.right = "5%";
-    description.style.top = "60%";
-    description.style.fontSize = "75%";
-    infoElement.appendChild(description);
-    let video = document.createElement('video');
-    video.style.width = "20vw";
-    video.style.position = "absolute";
-    video.style.right = "5%";
-    video.style.bottom = "5%";
-    video.src = "./img/collision.mp4";
-    video.loop = true;
-    video.play();
-    infoElement.appendChild(video);
-}
+export default myMain;

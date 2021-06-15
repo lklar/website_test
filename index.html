@@ -1,38 +1,191 @@
-<html>
-<head>
-<title></title>
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <title>Tour about the formation of planets</title>
+    <style>
+      canvas {
+        border: 1px solid black;
+      }
+    </style>
+    <!-- <script type="module" src="main.js"></script> -->
+    <link rel='stylesheet' href='./css/tour.css'>
 
-<link rel='stylesheet' href='./css/tour.css'>
-<script src='./scripts/tour.js'></script>
-<!-- <script src="./scripts/anime.min.js"></script> -->
-<style>
-#svgText > text {
-    font-family: "Papyrus", Helvetica, serif;
-    font-size: 40;
-    fill:white;
-    opacity: 0;
-}
-</style>
+    <link rel='stylesheet' href='./css/styles_popup.css'>
+    <script src="./scripts/jquery-3.6.0.min.js"></script>
 
-</head>
-
+  </head>
 <body>
 
 <div class="container">
-    <canvas id="myCanvas"></canvas>
-    <!-- <div id="clickablesContainer"></div> -->
+    <canvas id="myCanvas" width="1728" height="1152"></canvas>
+    <div id="dustPopup" class="modal">
+        <div id="dustBackground" class="popup-background"></div>
+        <div id="dustContent" class="modal-wrap">
+            <h1>Interplanetary Dust Particles</h1>
+            <ul>
+                <li>Are formed by condensation in the solar nebula, or in the interstellar medium</li>
+                <li>Are typically 0.1 – 1 micrometer in size</li>
+                <li>Are the building blocks of the planets, asteroids, comets, and moons</li>
+                <li>Can be collected in the upper Earth atmosphere, and by spacecraft missions (Rosetta, Stardust)</li>
+                <li>Can be directly observed in cometary dust tails</li>
+            </ul>
+            <div class="table">
+                <div class="table-row">
+                <div class="table-cell">
+                    <img src="/img/MIDAS_Particle.jpg" alt="">
+                    <p>Particle observed by ROSETTA. Credit: Mannel et al., 2019</p>
+                </div>
+                <div class="table-cell">
+                    <img src="/img/idp.jpg" alt="">
+                    <p>Credit: Amara/Wikipedia (CC)</p>
+                    </div>
+                <div class="table-cell">
+                    <img src="/img/Hale_bopp.jpg" alt="">
+                    <p>Credit: Jerry Lodriguss</p>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="pebblesPopup" class="modal">
+        <div id="pebblesBackground" class="popup-background"></div>
+        <div id="pebblesContent" class="modal-wrap">
+        <h1>Pebbles</h1>
+        <ul>
+            <li>Are formed by the coagulation of the interplanetary dust particles</li>
+            <li>Are typically mm to cm in size</li>
+            <li>Can be observed by Radio Telescopes (ALMA) in other protoplanetary discs</li>
+            <li>Have a porosity of ~65%</li>
+            <li>Have been directly observed on the surface of Comet 67P</li>
+            <li>Clouds of pebbles can collapse under their own gravity which leads to the formation of planetesimals</li>
+        </ul>
 
-    <!-- <svg id="svgTest" viewBox="0 0 200 200">
-        <ellipse class="test" cx="50" cy="50" rx="20" ry="20" style="fill:none;stroke:black;stroke-width:1" />
-        <ellipse class="test" cx="50" cy="50" rx="15" ry="15" style="fill:none;stroke:black;stroke-width:1" />
-    </svg> -->
+        <div class="table">
+            <div class="table-row">
+                <div class="table-cell">
+                    <img src="/img/pebble_simulation.png" alt="">
+                    <p>Credit: ???</p>
+                </div>
+                <div class="table-cell">
+                <img src="/img/pebble_foto.jpg" alt="">
+                <p>Credit: B. Gundlach</p>
+                </div>
+                <div class="table-cell">
+                <img src="/img/alma.jpg" alt="">
+                <p>Credit: ALMA (need better ref)</p>
+                </div>
+                <div class="table-cell">
+                <img src="/img/chury_pebbles.jpg" alt="">
+                <p>Credit: Poulet et al., 2016</p>
+                </div>
+                
+            
+            </div>
+            </div>
+        </div>
+    </div>
+    <div id="planetesimalPopup" class="modal">
+        <div id="planetesimalBackground" class="popup-background"></div>
+        <div id="planetesimalContent" class="modal-wrap">
+        <h1>Planetesimals</h1>
+            <ul>
+                <li>Planetesimals are ~km-sized objects, which is the critical size to attract material by its own gravity</li>
+                <li>They can be observed today as comets, or asteroids</li>
+                <li>Three different theories exist that explain the formation of planetesimals (Gravitational Collpase, Mass Transfer, or Direct Growth)</li>
+                <li>After their formation, some planetesimals suffered serious alteration by impacts, or temperature changes, while other have been left unchanged until today (comets)</li>
+                <li>Some planetesimals are called “rubble piles”, which means that a catastrophic impact has destroyed the original object, but thanks to gravity, the material reassembled to form a new body, the rubble pile planetesimal</li>
+                <li>Planetesimals are the seeds for the further growth of larger objects in planetary system</li>
+            </ul>
+            <img src="/img/arrokoth.png" alt="">
+                <p>Credit: NASA</p>
+        </div>
+    </div>
 
-    <svg preserveAspectRatio="none" id="mySVG" viewBox="0 0 100 100">
+
+    <svg preserveAspectRatio="none" id="mySVG" width viewBox="0 0 1728 1152">
         <defs>
-            <mask id="pathMask"></mask>
+            <g id="pathMasks"></g>
             <g id="textPaths"></g>
         </defs>
-        <g id="paths"></g>
+        <g id="displayPaths">
+            <g id="dustArea">
+                <path id="displayPath0" d="
+                    M 15 250 
+                    A 120 75 0 0 1 255 250 
+                    A 120 75 0 0 1 15 250 
+                "></path>
+            </g>
+            <path id="displayPath1" d="
+                M 199 314 
+                C 7 367 -51 553 167 554  
+            "></path>
+            <g id="transition0Area">
+                <path id="displayPath2" d="
+                    M 167 554
+                    L 167 513 
+                    A 15 15 90 0 1 182 498 
+                    L 332 498 
+                    A 15 15 90 0 1 347 513 
+                    L 347 554
+                "></path>
+                <path id="displayPath3" d="
+                    M 167 554 
+                    L 167 595 
+                    A 15 15 90 0 0 182 610 
+                    L 332 610 
+                    A 15 15 90 0 0 347 595 
+                    L 347 554 
+                "></path>
+            </g>
+            <path id="displayPath4" d="
+                M 347 554
+                C 450 554 450 636 553 636 
+            "></path>
+            <g id="pebblesArea">
+                <path id="displayPath5" d="
+                    M 553 636
+                    A 120 75 0 0 1 793 636
+                "></path>
+                <path id="displayPath6" d="
+                    M 553 636
+                    A 120 75 0 0 0 793 636
+                "></path>
+            </g>
+            <path id="displayPath7" d="
+                M 793 636
+                C 901 636 901 676 1009 676
+            "></path>
+            <g id="transition1Area">
+                <path id="displayPath8" d="
+                    M 1009 676
+                    L 1009 635
+                    A 15 15 90 0 1 1024 620
+                    L 1242 620
+                    A 15 15 90 0 1 1257 635
+                    L 1257 676
+                "></path>
+                <path id="displayPath9" d="
+                    M 1009 676
+                    L 1009 717
+                    A 15 15 90 0 0 1024 732
+                    L 1242 732
+                    A 15 15 90 0 0 1257 717
+                    L 1257 676
+                "></path>
+            </g>
+            <path id="displayPath10" d="
+                M 1257 676
+                C 1365 676 1365 716 1473 716
+            "></path>
+            <g id="planetesimalArea">
+                <path id="displayPath11" d="
+                    M 1473 716
+                    A 120 75 0 0 1 1713 716
+                    A 120 75 0 0 1 1473 716
+                "></path>
+            </g>
+        </g>
         <g id="clickableAreas"></g>
         <g id="svgText"></g>
     </svg>
@@ -40,497 +193,19 @@
     <div id="imgCanvases"></div>
     
     <div id="infoText"></div>
-
 </div>
 
-
-
-
-
 <script type="module">
-    import anime from './scripts/anime.es.js';
-    var canvas = document.getElementById("myCanvas");
-    var clickables = document.getElementById("clickablesContainer"); 
-    var ctx = canvas.getContext("2d");
-    var r = document.querySelector(':root');
-    
-    let maskSpeed = 200;
-    let pathSpeed = 4000;
-
-    let areas = {
-        dust: {
-            name : "dust",
-            text : "Dust",
-            cx : 120,
-            cy : 250,
-            rx : 120,
-            ry : 75,
-            alphaStart : 210,
-            direction : "anti-clockwise"
-        },
-
-        pebbles: {
-            name : "pebbles",
-            text : "Pebbles",
-            cx : 673,
-            cy : 636,
-            rx : 120,
-            ry : 75,
-            alphaStart : 270,
-            direction : "clockwise"
-        },
-
-        protoplanet: {
-            name : "protoplanet",
-            text : "Protoplanet",
-            cx : 1613,
-            cy : 716,
-            rx : 120,
-            ry : 75,
-            alphaStart : 0,
-            direction : "anti-clockwise"
-        }
-    }
-
-    let connections = {
-        dustPebbles : {
-            name : "dustPebbles",
-            text : "Dust to Pebbles",
-            from : areas.dust,
-            to   : areas.pebbles,
-            alpha1 : 210,
-            dx1 : -300,
-            dy1 : 100,
-            alpha2 : 270,
-            dx2 : -500,
-            dy2 : 50
-        },
-
-        pebblesProtoplanet : {
-            name : "pebblesProtoplanet",
-            text : "Pebbles to Protoplanet",
-            from : areas.pebbles,
-            to   : areas.protoplanet,
-            alpha1 : 65,
-            dx1 : -400,
-            dy1 : 150,
-            alpha2 : 0,
-            dx2 : 0,
-            dy2 : 400
-        }
-    }
-
-    let animations = {
-        a1 : {
-            target : "dustMask",
-            start : 0,
-            end : 1,
-            duration : maskSpeed,
-            onCompletion : dustCompleteFunc
-        },
-        a2 : {
-            target : "dustPebblesMask",
-            start : 0,
-            end : 1,
-            duration : maskSpeed,
-            onCompletion : pebblesCompleteFunc
-
-        },
-        a3 : {
-            target : "pebblesMask",
-            start : 0,
-            end : 1,
-            duration : maskSpeed,
-            onCompletion : dustPebblesCompleteFunc
-        },
-        a4 : {
-            target : "pebblesProtoplanetMask",
-            start : 0,
-            end : 1,
-            duration : maskSpeed,
-            onCompletion : pebblesProtoplanetCompleteFunc
-        },
-        a5 : {
-            target : "protoplanetMask",
-            start : 0,
-            end : 1,
-            duration : maskSpeed,
-            onCompletion : protoplanetCompleteFunc
-        }
-    }
-
-    function dustCompleteFunc(mainTimeline)
-    {
-        let tl = anime.timeline({
-                easing: 'linear'
-        });
-        tl.add({
-                targets : ['#dustCanvas', '#dustText'],
-                opacity : [0, 1],
-                duration : 2000,
-                complete : function(anim){
-                        mainTimeline.play();
-                }
-            });
-    }
-
-    function dustPebblesCompleteFunc(mainTimeline)
-    {
-        let i = 0;
-        let video = document.createElement('video');
-        video.style.width = "20vw";
-        video.style.position = "absolute";
-        video.style.left = "5%";
-        video.style.top = "55%";
-        video.style.opacity = "0";
-        video.src = "./img/collision.mp4";
-        document.getElementById("infoText").appendChild(video);
-        document.getElementById("dustPebblesText").style["opacity"] = "1.0";
-        let cText = document.getElementById("dustPebblesText").children[0];
-        let finalText = cText.innerHTML;
-        cText.innerHTML = "";
-        let tl = anime.timeline({
-            easing: 'linear'
-            });
-        tl.pause();
-        let interval = setInterval(function(){
-            cText.innerHTML += finalText[i];
-            ++i;
-            if(i >= finalText.length)
-            {
-                clearInterval(interval);
-                tl.play();
-            }
-        }, 100);
-        tl.add({
-                targets : video,
-                opacity : [0, 1],
-                duration : 2000,
-                complete : function(anim){
-                    video.play();
-                    tl.pause();
-                }
-            });
-        video.onended = function(event) {
-            tl.play();
-        }
-        tl.add({
-            targets : video,
-            opacity : [1, 0],
-            duration : 1000,
-            complete : function(anim){
-                document.getElementById("infoText").removeChild(video);
-                mainTimeline.play();
-            }
-        })
-    }
-
-    function pebblesCompleteFunc(mainTimeline)
-    {
-        let tl = anime.timeline({
-                easing: 'linear'
-        });
-        tl.add({
-                targets : ['#pebblesCanvas', '#pebblesText'],
-                opacity : [0, 1],
-                duration : 2000,
-                complete : function(anim){
-                    mainTimeline.play();
-                }
-            });
-    }
-
-    function pebblesProtoplanetCompleteFunc(mainTimeline)
-    {
-        let i = 0;
-        let video = document.createElement('video');
-        video.style.width = "20vw";
-        video.style.position = "absolute";
-        video.style.right = "30%";
-        video.style.top = "55%";
-        video.style.opacity = "0";
-        video.src = "./img/sticking_19mms-1.mp4";
-        document.getElementById("infoText").appendChild(video);
-        document.getElementById("pebblesProtoplanetText").style["opacity"] = "1.0";
-        let cText = document.getElementById("pebblesProtoplanetText").children[0];
-        let finalText = cText.innerHTML;
-        cText.innerHTML = "";
-        let tl = anime.timeline({
-            easing: 'linear'
-            });
-        tl.pause();
-        let interval = setInterval(function(){
-            cText.innerHTML += finalText[i];
-            ++i;
-            if(i >= finalText.length)
-            {
-                clearInterval(interval);
-                tl.play();
-            }
-        }, 100);
-        tl.add({
-                targets : video,
-                opacity : [0, 1],
-                duration : 2000,
-                complete : function(anim){
-                    video.play();
-                    tl.pause();
-                }
-            });
-        video.onended = function(event) {
-            tl.play();
-        }
-        tl.add({
-            targets : video,
-            opacity : [1, 0],
-            duration : 1000,
-            complete : function(anim){
-                document.getElementById("infoText").removeChild(video);
-                mainTimeline.play();
-            }
-        })
-            
-    }
-
-    function protoplanetCompleteFunc(mainTimeline)
-    {
-        let tl = anime.timeline({
-                easing: 'linear'
-        });
-        tl.add({
-                targets : ['#protoplanetCanvas', '#protoplanetText'],
-                opacity : [0, 1],
-                duration : 2000
-            });
-    }
-
-    var img=new Image();
-    img.src="img/exoplanets-disks.jpg";
-    img.onload=function(){
-        canvas.width = this.width;
-        canvas.height = this.height;
-        setUpSVG(this.width, this.height);
-
-        for(const key in connections)
+    import myMain from './scripts/tour.js';
+    $(document).ready(function(){
+        myMain();
+        let r = document.querySelector(':root');
+        r.style.setProperty('--modalScale', `${$(window).width() / 1750}`);
+        $(window).bind('resize', function()
         {
-            {
-                let newPath = connectionPath(connections[key]);
-                addMask(newPath, `${connections[key].name}Mask`);
-                addPath(newPath, `${connections[key].name}Path`);
-                let newArea = addArea(newPath, `${connections[key].name}Area`);
-                newArea.setAttribute("fill", "none");
-
-            }
-
-            if (connections[key].from.isDisplayed != true)
-            {
-                let newPath = enclosurePath(connections[key].from);
-                addMask(newPath, `${connections[key].from.name}Mask`);
-                addPath(newPath, `${connections[key].from.name}Path`);
-                addArea(newPath, `${connections[key].from.name}Area`);
-                connections[key].from.isDisplayed = true;
-            }
-
-            if (connections[key].to.isDisplayed != true)
-            {
-                let newPath = enclosurePath(connections[key].to);
-                addMask(newPath, `${connections[key].to.name}Mask`);
-                addPath(newPath, `${connections[key].to.name}Path`);
-                addArea(newPath, `${connections[key].to.name}Area`);
-                connections[key].to.isDisplayed = true;
-            }
-            
-        }
-
-        addCanvasForArea(areas.dust, "img/IDP.jpg", this.width, this.height);
-        addCanvasForArea(areas.pebbles, "img/Pebble_Labor_2.jpg", this.width, this.height);
-        addCanvasForArea(areas.protoplanet, "img/arrokoth.png", this.width, this.height);
-
-        let dashLength = document.getElementById("dustPath").getTotalLength() / 32;
-        document.getElementById("paths").setAttribute("stroke-dasharray", `${dashLength} ${dashLength}`);
-        r.style.setProperty('--dashLength', `${2*dashLength}`)
-
-        let maskTimeline = anime.timeline({
-            easing: 'linear'
+            r.style.setProperty('--modalScale', `${$(window).width() / 1750}`);
         });
-
-        addAreaText(areas.dust, 25, 30);
-        addAreaText(areas.pebbles, 25, 30);
-        addAreaText(areas.protoplanet, 15, 30);
-        addConnectionText(connections.dustPebbles, -30, 40, 40);
-        addConnectionText(connections.pebblesProtoplanet, -10, 50, 30);
-
-        for (const key in animations)
-        {
-            let ani = animations[key];
-            let target = document.getElementById(ani.target);
-            let targetLength = target.getTotalLength();
-            maskTimeline.add({
-                targets: target,
-                strokeDashoffset: [(1-ani.start) * targetLength, (1-ani.end) * targetLength],
-                duration: ani.duration,
-                complete: function(anim){
-                    maskTimeline.pause();
-                    ani.onCompletion(maskTimeline);
-             }
-            }, ani.atTime);
-        }
-
-        //addToTimeline(maskTimeline, "dustMask", 0, 1, areas.dust.onCompletion, maskSpeed/5);
-        //addToTimeline(maskTimeline, "dustPebblesMask", 0, 1, maskSpeed/5);
-        // addToTimeline(maskTimeline, "pebblesMask", 0, 0.5, maskSpeed/10);
-        // addToTimeline(maskTimeline, "pebblesMask", 0.5, 1, maskSpeed/10);
-        // addToTimeline(maskTimeline, "pebblesProtoplanetMask", 0, 1, maskSpeed/5, `-=${maskSpeed / 10}`);
-        // addToTimeline(maskTimeline, "protoplanetMask", 0, 1, maskSpeed/5);
-
-        // document.getElementById('dustArea').addEventListener("click", function(){
-        //     processDustClick();
-        // });
-        // document.getElementById('dustPebblesArea').addEventListener("click", function(){
-        //     processDustPebblesClick();
-        // });
-        // document.getElementById('pebblesArea').addEventListener("click", function(){
-        //     processPebblesClick();
-        // });
-        // document.getElementById('pebblesProtoplanetArea').addEventListener("click", function(){
-        //     processPebblesProtoplanetClick();
-        // });
-        // document.getElementById('protoplanetArea').addEventListener("click", function(){
-        //     processProtoplanetClick();
-        // });
-
-        // let newPathElement = document.createElementNS("http://www.w3.org/2000/svg","path");
-        // let myPath = "";
-        // {
-        //     myPath += `M 530,330`;
-        //     let startPoint = pointOnEllipse(530, 330, 100, 50, 90);
-        //     let endPoint = pointOnEllipse(530, 330, 100, 50, 270);
-        //     myPath += `M ${startPoint.x},${startPoint.y} A ${100} ${50} 0 1 1 ${endPoint.x} ${endPoint.y}`;
-        //     startPoint = pointOnEllipse(530, 330, 100, 50, 270);
-        //     endPoint = pointOnEllipse(530, 330, 100, 50, 90);
-        //     myPath += `A ${100} ${50} 0 1 1 ${endPoint.x} ${endPoint.y}`;
-        // }
-        // newPathElement.setAttribute("d", myPath)
-        // let pathLength = newPathElement.getTotalLength();
-        // myPath += `c ${-100} ${0} -500 0 ${-50} ${350}`;
-        // // {
-        // //     let startPoint = pointOnEllipse(530, 330, 100, 50, 145);
-        // //     let endPoint = pointOnEllipse(0, 0, 100, 50, 0);
-        // //     myPath += `a ${100} ${50} 0 1 1 ${endPoint.x} ${endPoint.y}`
-        // // }
-        
-        // newPathElement.setAttribute("id", `myPath`);
-        // newPathElement.setAttribute("d", myPath);
-        // newPathElement.setAttribute("stroke-linecap", "round");
-        // //let pathLength = newPathElement.getTotalLength();
-        // newPathElement.setAttribute("stroke-dasharray",`${pathLength / 8} ${pathLength / 8}`);
-        // newPathElement.setAttribute("mask", "url(#theMask)");
-        // //newPath.style.transformOrigin = `${100 * area.X / width}% ${100 * area.Y / height}%`;
-        // document.getElementById("mySVG").appendChild(newPathElement);
-
-        // {
-        //     let newMaskElement = document.createElementNS("http://www.w3.org/2000/svg","path");
-        //     newMaskElement.setAttribute("d", myPath);
-        //     newMaskElement.setAttribute("id", "myMask");
-        //     newMaskElement.setAttribute("fill", "none");
-        //     newMaskElement.setAttribute("stroke", "#fff");
-        //     newMaskElement.setAttribute("stroke-linecap", "round");
-        //     //newMaskElement.setAttribute("stroke-miterlimit", "10");
-        //     newMaskElement.setAttribute("stroke-width", "10");
-        //     document.getElementById("theMask").appendChild(newMaskElement);
-        //     let maskLength = newMaskElement.getTotalLength();
-        //     // anime({
-        //     //     targets: newMaskElement,
-        //     //     strokeDashoffset: [0, maskLength],
-        //     //     duration: 10000,
-        //     //     easing: 'linear'
-        //     // });
-        // }
-
-        // anime({
-        //     targets: newPathElement,
-        //     strokeDashoffset: [0, pathLength],
-        //     loop: true,
-        //     direction: 'reverse',
-        //     duration: 5000,
-        //     easing: 'linear'
-        // });
-
-        // anime({
-        //     targets: "#myMask",
-        //     strokeDashoffset: [1152, 0],
-        //     //loop: true,
-        //     //direction: 'reverse',
-        //     duration: 5000,
-        //     easing: 'linear'
-        // });
-        
-
-        // for(const key in areas)
-        // {
-        //     //convertPixelToRelativeValues(areas[key], this.width, this.height);
-        //     let newPath = addEnclosingPath(areas[key], this.width, this.height);
-        //     anime({
-        //         targets: newPath,
-        //         //translateX: 250,
-        //         //rotateZ: 360,
-        //         strokeDashoffset: [offsetStart[key], offsetStart[key] + 200],
-        //         loop: true,
-        //         //backgroundColor: '#FFF',
-        //         //direction: 'alternate',
-        //         //delay : delays[key],
-        //         duration: durations[key],
-        //         easing: 'linear'
-        //     });
-        //     console.log(`${key} has duration of ${newPath.getTotalLength()}`);
-        // }
-
-        // for(const key in connections)
-        // {
-        //     let newPath = addPathForConnection(connections[key], key);
-        //     anime({
-        //         targets: newPath,
-        //         //translateX: 250,
-        //         //rotateZ: 360,
-        //         strokeDashoffset: [offsetStart[key], offsetStart[key] + 200],
-        //         loop: true,
-        //         //backgroundColor: '#FFF',
-        //         //direction: 'alternate',
-        //         //delay : delays[key],
-        //         duration: durations[key],
-        //         easing: 'linear'
-        //     });
-        //     console.log(`${key} has length of ${newPath.getTotalLength()}`);
-        // }
-
-        //setUpSVG(this.width, this.height);
-
-        // for(const area in areas)
-        // {
-        //     let newCanvas = addCanvasForArea(areas[area], this);
-        //     newCanvas.addEventListener("mouseenter", function(){
-        //         r.style.setProperty('--backgroundOpacity', '0.5');
-        //         r.style.setProperty('--clickablesOpacity', '0');
-        //         newCanvas.style.opacity = "1.0";
-        //         //newCanvas.style.animation = "zoomIn 1s forwards";
-        //     });
-        //     newCanvas.addEventListener("mouseout", function(){
-        //         r.style.setProperty('--backgroundOpacity', '1.0');
-        //         r.style.setProperty('--clickablesOpacity', '1.0')
-        //         newCanvas.style.opacity = "var(--clickablesOpacity)";
-        //         //newCanvas.style.animation = "zoomNormal 1s forwards";
-        //     });
-        //     addEnclosingPath(areas[area], this.width, this.height);
-        // }
-        
-        // for(const connection in connections)
-        // {
-        //     addPathForConnection(connections[connection], connection, this.width, this.height);
-        // }
-        ctx.drawImage(this,0,0);
-        
-    }
-    
+    });
 </script>
 
 </body>
