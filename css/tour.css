@@ -25,6 +25,10 @@ a {
     z-index: 1;
 }
 
+#dustArea, #pebblesArea, #planetesimalArea {
+    cursor: pointer;
+}
+
 #displayPaths > *{
     fill: none;
     stroke: white;
