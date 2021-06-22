@@ -25,7 +25,7 @@ a {
     z-index: 1;
 }
 
-#dustArea, #pebblesArea, #planetesimalArea {
+#dustArea, #pebblesArea, #planetesimalArea, #transition0Area, #transition1Area {
     cursor: pointer;
 }
 

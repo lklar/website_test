@@ -22,28 +22,60 @@
     <div id="dustPopup" class="modal">
         <div id="dustBackground" class="popup-background"></div>
         <div id="dustContent" class="modal-wrap">
-            <h1>Interplanetary Dust Particles</h1>
+            <h1>Interplanetary Dust Particles (IDP)</h1>
             <ul>
-                <li>Are formed by condensation in the solar nebula, or in the interstellar medium</li>
-                <li>Are typically 0.1 – 1 micrometer in size</li>
-                <li>Are the building blocks of the planets, asteroids, comets, and moons</li>
-                <li>Can be collected in the upper Earth atmosphere, and by spacecraft missions (Rosetta, Stardust)</li>
-                <li>Can be directly observed in cometary dust tails</li>
+                <li>IDPs are formed by condensation in the solar nebula, or in the interstellar medium.</li>
+                <li>They have typically a size of 0.1 – 1 micrometer.</li>
+                <li>They are the building blocks of the planets, asteroids, comets, moons and trans-Neptunian objects.</li>
+                <li>IDPs can be collected in the upper Earth atmosphere, and by spacecraft missions (Rosetta, Stardust).</li>
+                <li>In cometary dust tails they can be directly observed.</li>
             </ul>
             <div class="table">
                 <div class="table-row">
                 <div class="table-cell">
                     <img src="./img/MIDAS_Particle.jpg" alt="">
-                    <p>Particle observed by ROSETTA. Credit: Mannel et al., 2019</p>
+                    <p>Particle observed by ROSETTA.</p>
+                    <p>Credit: Mannel et al., 2019</p>
                 </div>
                 <div class="table-cell">
                     <img src="./img/IDP.jpg" alt="">
+                    <p>Interplanetary Dust Particle.</p>
                     <p>Credit: Amara/Wikipedia (CC)</p>
                     </div>
                 <div class="table-cell">
                     <img src="./img/Hale_bopp.jpg" alt="">
+                    <p>Comet Hale Bopp.</p>
                     <p>Credit: Jerry Lodriguss</p>
                 </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="DustToPebblePopup" class="modal">
+        <div id="DustToPebbleBackground" class="popup-background"></div>
+        <div id="DustPebbleContent" class="modal-wrap">
+            <h1>From Dust to Pebbles</h1>
+            <div class="table">
+                <div class="table-row">
+                    <div class="table-cell">
+                        <ul style="margin-top: -5cm;"> 
+                            <li>Dust particles collide at low speed. </li>
+                            <li>Upon collision, dust particles stick.</li>
+                            <li>Successive sticking events lead to fractal agglomerates.	</li>
+                            <li>Collision of large fractals can lead to compaction.</li>
+                            <li>Compact agglomerates do not stick, but bounce off in collisions.</li>
+                            <li>Growth stops at mm to cm.</li>
+                            <li>mm- to cm-sized compact agglomerates are called pebbles.</li>
+                        </ul>
+                    </div>
+                    <div class="table-cell" style="text-align: center;">
+                    <video loop autoplay controls src="/img/collision.mp4" width="200px" > </video>
+                    <p>Scan through a fractal agglomerate grown in a suborbital flight.</p>
+                    <p>Credit: ???</p>
+                    <video loop autoplay controls src="/img/media1.mp4" width="200px"> </video>
+                    <p>Successive sticking events in a drop tower experiments.</p>
+                    <p>Credit: ???</p>
+                    </div>  
                 </div>
             </div>
         </div>
@@ -53,30 +85,32 @@
         <div id="pebblesContent" class="modal-wrap">
         <h1>Pebbles</h1>
         <ul>
-            <li>Are formed by the coagulation of the interplanetary dust particles</li>
-            <li>Are typically mm to cm in size</li>
-            <li>Can be observed by Radio Telescopes (ALMA) in other protoplanetary discs</li>
-            <li>Have a porosity of ~65%</li>
-            <li>Have been directly observed on the surface of Comet 67P</li>
-            <li>Clouds of pebbles can collapse under their own gravity which leads to the formation of planetesimals</li>
+            <li>Their size is typically mm to cm.</li>
+            <li>They can be observed by Radio Telescopes (ALMA) in other protoplanetary discs.</li>
+            <li>Their porosity is ~65%.</li>
+            <li>Pebbles have been directly observed on the surface of Comet 67P.</li>
         </ul>
 
         <div class="table">
             <div class="table-row">
                 <div class="table-cell">
-                    <img src="./img/pebble_simulation.png" alt="">
-                    <p>Credit: ???</p>
+                <img src="./img/pebble_simulation.png" alt="">
+                <p>Computer modell of a pebble.</p>
+                <p>Credit: ???</p>
                 </div>
                 <div class="table-cell">
                 <img src="./img/pebble_foto.jpg" alt="">
+                <p>Silica dust pebbles under the microscope.</p>
                 <p>Credit: B. Gundlach</p>
                 </div>
                 <div class="table-cell">
                 <img src="./img/alma.jpg" alt="">
+                <p>Protoplanetary disks observed by ALMA radio telescope.</p>
                 <p>Credit: ALMA (need better ref)</p>
                 </div>
                 <div class="table-cell">
                 <img src="./img/chury_pebbles.jpg" alt="">
+                <p>Green marked pebbles photographed on comet 67P.</p>
                 <p>Credit: Poulet et al., 2016</p>
                 </div>
                 
@@ -85,20 +119,48 @@
             </div>
         </div>
     </div>
+    <div id="PebbleToPlanetesimalPopup" class="modal">
+        <div id="PebbleToPlanetesimalBackground" class="popup-background"></div>
+        <div id="PebblePlanetesimalContent" class="modal-wrap">
+            <h1>From Pebbles to Planetesimals</h1>
+            <div class="table">
+                <div class="table-row">
+                    <div class="table-cell">
+                    <ul style="font-size: 50px;">
+                        <li>Pebbles cannot grow any further by collisional sticking.</li>
+                        <li>Pebbles are locally and spatially concentrated by hydrodynamic effects.</li>
+                        <li>Upon reaching a critical concentration, pebble clouds collapse under their own gravity and form planetesimals.</li>
+                    </ul></div>
+                    <div class="table-cell" style="text-align: center;">
+                        <video loop controls src="/img/planetesimal_notitle.mp4" width="300px" autoplay> </video>
+                        <p>Simulation of the concentration of pebbles via the so-called streaming instability.</p>
+                        <a href="https://sites.google.com/view/planet-formation-group/home" target="_blank"><p>Credit: Johansen et al. 2007</p></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="planetesimalPopup" class="modal">
         <div id="planetesimalBackground" class="popup-background"></div>
         <div id="planetesimalContent" class="modal-wrap">
         <h1>Planetesimals</h1>
-            <ul>
-                <li>Planetesimals are ~km-sized objects, which is the critical size to attract material by its own gravity</li>
-                <li>They can be observed today as comets, or asteroids</li>
-                <li>Three different theories exist that explain the formation of planetesimals (Gravitational Collpase, Mass Transfer, or Direct Growth)</li>
-                <li>After their formation, some planetesimals suffered serious alteration by impacts, or temperature changes, while other have been left unchanged until today (comets)</li>
-                <li>Some planetesimals are called “rubble piles”, which means that a catastrophic impact has destroyed the original object, but thanks to gravity, the material reassembled to form a new body, the rubble pile planetesimal</li>
-                <li>Planetesimals are the seeds for the further growth of larger objects in planetary system</li>
-            </ul>
-            <img src="./img/arrokoth.png" alt="">
-                <p>Credit: NASA</p>
+        <div class="table">
+            <div class="table-row">
+                    <ul>
+                        <li>Planetesimals are ~km-sized objects, which is the critical size to attract material by its own gravity.</li>
+                        <li>They can be observed today as comets, asteroids, or trans-Neptunian objects.</li>
+                        <li>Three different theories exist that explain the formation of planetesimals (Gravitational Collpase, Mass Transfer, or Direct Growth).</li>
+                        <li>After their formation, some planetesimals suffered serious alteration by impacts, or temperature changes, while other have been left unchanged until today (comets).</li>
+                        <li>Some planetesimals are called “rubble piles”, which means that a catastrophic impact has destroyed the original object, but thanks to gravity, the material reassembled to form a new body, the rubble pile planetesimal.</li>
+                        <li>Planetesimals are the seeds for the further growth of larger objects in planetary system.</li>
+                    </ul>
+            </div>
+            <div class="table-row">
+                    <img src="./img/arrokoth.png" alt="">
+                    <p>Photo of Arrokoth made by the New Horizons space craft.</p>
+                        <p>Credit: NASA</p>
+            </div>
+        </div>
         </div>
     </div>
 

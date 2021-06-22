@@ -80,6 +80,7 @@ function myMain(){
             strokeDashoffset : [pathLengths[2], 0],
             duration : pathLengths[2] * maskSpeed,
             complete : function(anim){
+                document.getElementById("transition0Area").style.pointerEvents = "all";
                 document.getElementById("displayPath2").removeAttribute("mask");
                 document.getElementById("displayPath3").removeAttribute("mask");
             }
@@ -125,6 +126,7 @@ function myMain(){
             strokeDashoffset : [pathLengths[8], 0],
             duration : pathLengths[8] * maskSpeed,
             complete : function(anim){
+                document.getElementById("transition1Area").style.pointerEvents = "all";
                 document.getElementById("displayPath8").removeAttribute("mask");
                 document.getElementById("displayPath9").removeAttribute("mask");
             }
@@ -168,10 +170,20 @@ function myMain(){
                 popup : document.getElementById("dustPopup"),
                 background : document.getElementById("dustBackground")
             },
+            dusttopebbles : {
+                area : document.getElementById("transition0Area"),
+                popup : document.getElementById("DustToPebblePopup"),
+                background : document.getElementById("DustToPebbleBackground")
+            },
             pebbles : {
                 area : document.getElementById("pebblesArea"),
                 popup : document.getElementById("pebblesPopup"),
                 background : document.getElementById("pebblesBackground")
+            },
+            pebblestoplanetesimal : {
+                area : document.getElementById("transition1Area"),
+                popup : document.getElementById("PebbleToPlanetesimalPopup"),
+                background : document.getElementById("PebbleToPlanetesimalBackground")
             },
             planetesimal : {
                 area : document.getElementById("planetesimalArea"),
