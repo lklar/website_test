@@ -113,3 +113,16 @@ p{
 .table-row {display: table-row; }
 .table-cell {display: table-cell; }
 }
+
+.video-cell {
+    padding-right: 50px;
+}
+
+.video-cell > video {
+    width: 100%;
+}
+
+.video-cell > p, a {
+    width: 100%;
+    text-align: center;
+}
