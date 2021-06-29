@@ -21,7 +21,7 @@
     <canvas id="myCanvas" width="1728" height="1152"></canvas>
     <div id="dustPopup" class="modal">
         <div id="dustBackground" class="popup-background"></div>
-        <div id="dustContent" class="modal-wrap">
+        <div id="dustContent" class="modal-wrap modal-wrap-non-credit">
             <h1>Interplanetary Dust Particles (IDP)</h1>
             <ul>
                 <li>IDPs are formed by condensation in the solar nebula, or in the interstellar medium.</li>
@@ -53,7 +53,7 @@
     </div>
     <div id="DustToPebblePopup" class="modal">
         <div id="DustToPebbleBackground" class="popup-background"></div>
-        <div id="DustPebbleContent" class="modal-wrap">
+        <div id="DustPebbleContent" class="modal-wrap modal-wrap-non-credit">
             <h1>From Dust to Pebbles</h1>
             <div class="table">
                 <div class="table-row">
@@ -82,7 +82,7 @@
     </div>
     <div id="pebblesPopup" class="modal">
         <div id="pebblesBackground" class="popup-background"></div>
-        <div id="pebblesContent" class="modal-wrap">
+        <div id="pebblesContent" class="modal-wrap modal-wrap-non-credit">
         <h1>Pebbles</h1>
         <ul>
             <li>Their size is typically mm to cm.</li>
@@ -121,7 +121,7 @@
     </div>
     <div id="PebbleToPlanetesimalPopup" class="modal">
         <div id="PebbleToPlanetesimalBackground" class="popup-background"></div>
-        <div id="PebblePlanetesimalContent" class="modal-wrap">
+        <div id="PebblePlanetesimalContent" class="modal-wrap modal-wrap-non-credit">
             <h1>From Pebbles to Planetesimals</h1>
             <div class="table">
                 <div class="table-row">
@@ -142,7 +142,7 @@
     </div>
     <div id="planetesimalPopup" class="modal">
         <div id="planetesimalBackground" class="popup-background"></div>
-        <div id="planetesimalContent" class="modal-wrap">
+        <div id="planetesimalContent" class="modal-wrap modal-wrap-non-credit">
         <h1>Planetesimals</h1>
         <div class="table">
             <div class="table-row">
@@ -152,7 +152,7 @@
                         <li>Three different theories exist that explain the formation of planetesimals (Gravitational Collpase, Mass Transfer, or Direct Growth).</li>
                         <li>After their formation, some planetesimals suffered serious alteration by impacts, or temperature changes, while other have been left unchanged until today (comets).</li>
                         <li>Some planetesimals are called “rubble piles”, which means that a catastrophic impact has destroyed the original object, but thanks to gravity, the material reassembled to form a new body, the rubble pile planetesimal.</li>
-                        <li>Planetesimals are the seeds for the further growth of larger objects in planetary system.</li>
+                        <li>Planetesimals are the seeds for the further growth of larger objects in a planetary system.</li>
                     </ul>
             </div>
             <div class="table-row">
@@ -253,8 +253,25 @@
     </svg>
 
     <div id="imgCanvases"></div>
-    
-    <div id="infoText"></div>
+
+    <img id="creditsArea" src="img/credits.png" width="64" height="64"/>
+    <div id="creditsPopup" class="modal">
+        <div id="creditsBackground" class="popup-background"></div>
+        <div id="creditsContent" class="modal-wrap">
+        <h1>Credits</h1>
+        <div class="table">
+            <div class="table-row">
+                    <ul>
+                        <li>Main background image: NASA/FUSE/Lynette Cook</li>
+                            <!-- <img src="img/exoplanets-disks.jpg" width="128"/> -->
+                        
+                    </ul>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
 </div>
 
 <script type="module">

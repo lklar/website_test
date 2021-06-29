@@ -189,6 +189,11 @@ function myMain(){
                 area : document.getElementById("planetesimalArea"),
                 popup : document.getElementById("planetesimalPopup"),
                 background : document.getElementById("planetesimalBackground")
+            },
+            credits : {
+                area : document.getElementById("creditsArea"),
+                popup : document.getElementById("creditsPopup"),
+                background : document.getElementById("creditsBackground")
             }
         }
         for(let key in clickables)
