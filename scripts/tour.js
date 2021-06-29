@@ -46,6 +46,11 @@ function myMain(){
     img.src="img/exoplanets-disks.jpg";
     img.onload=function(){
         ctx.drawImage(this,0,0);
+        var titleImg = new Image();
+        titleImg.src = "./img/Title.png";
+        titleImg.onload=function(){
+            ctx.drawImage(titleImg, 250, 50, 1250, 1250*titleImg.height/titleImg.width);
+        }
         addCanvasForArea("dust", "./img/IDP_with_text.jpg", this.width, this.height);
         addCanvasForArea("pebbles", "./img/Pebble_Labor_2.jpg", this.width, this.height);
         addCanvasForArea("planetesimal", "./img/arrokoth_cut.png", this.width, this.height);
