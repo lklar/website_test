@@ -6,10 +6,21 @@ a {
     color:rgb(136, 136, 255);
 }
 
-.container{
-    position: absolute;
-    width: 84vw;
-    height: 56vw;
+#container{
+    position:absolute;
+    left: 0;
+    top: calc(50vh - (100vw)/3);
+    width: 100vw;
+    height: 66.666vw;
+}
+
+@media (min-aspect-ratio: 1.5) {
+    #container{
+        left: calc(50vw - 75vh);
+        top: 0;
+        width: 150vh;
+        height: 100vh;
+    }
 }
 
 #myCanvas, #mySVG, #imgCanvases, #imgCanvases > canvas {
@@ -25,8 +36,9 @@ a {
     z-index: 1;
 }
 
-#dustArea, #pebblesArea, #planetesimalArea, #transition0Area, #transition1Area {
+.clickable {
     cursor: pointer;
+    pointer-events: all;
 }
 
 #displayPaths > *{
@@ -40,10 +52,13 @@ a {
     /* animation: testAnim 1s linear forwards infinite; */
 }
 
-mask > path {
-    fill: none;
-    stroke: white;
-    stroke-width: 30px;
+.movingPath{
+    animation: pathMove 2s linear 0s infinite reverse; 
+}
+
+@keyframes pathMove{
+    from {stroke-dashoffset: 0;}
+    to   {stroke-dashoffset: calc(2px * var(--dashLength));}
 }
 
 #imgCanvases > canvas{

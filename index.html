@@ -17,65 +17,70 @@
   </head>
 <body>
 
-<div class="container">
+<div id="container">
     <canvas id="myCanvas" width="1728" height="1152"></canvas>
     <div id="dustPopup" class="modal">
         <div id="dustBackground" class="popup-background"></div>
         <div id="dustContent" class="modal-wrap modal-wrap-non-credit">
             <h1>Protoplanetary Dust Particles (PDPs)</h1>
-            <ul>
-                <li>PDPs are formed by condensation in the solar nebula, or in the interstellar medium.</li>
-                <li>They have typically a size of 0.1 – 1 micrometer.</li>
-                <li>They are the building blocks of the planets, asteroids, comets, moons and trans-Neptunian objects.</li>
-                <li>In cometary dust tails they can be directly observed.</li>
-                <li>Cometary PDPs can be collected in the upper Earth atmosphere, and by spacecraft missions (Rosetta, Stardust).</li>
-            </ul>
-            <div class="table">
-                <div class="table-row">
-                <div class="table-cell">
+            <div class="popupContent">
+             <div class="myGrid" style="grid-template-columns: 1fr;">
+                <ul>
+                    <li>PDPs are formed by condensation in the solar nebula, or in the interstellar medium.</li>
+                    <li>They have typically a size of 0.1 – 1 micrometer.</li>
+                    <li>They are the building blocks of the planets, asteroids, comets, moons and trans-Neptunian objects.</li>
+                    <li>In cometary dust tails they can be directly observed.</li>
+                    <li>Cometary PDPs can be collected in the upper Earth atmosphere, and by spacecraft missions (Rosetta, Stardust).</li>
+                </ul>
+            </div>
+            <div class="myGrid centeredGrid centeredText  small" style="grid-template-columns: 20% 30% 30%; gap: 5%;">
+                <div>
                     <img src="./img/MIDAS_Particle.jpg" alt="">
                     <p>PDP observed by ROSETTA.</p>
                     <p>Credit: Mannel et al., 2019</p>
                 </div>
-                <div class="table-cell">
+                <div>
                     <img src="./img/IDP.jpg" alt="">
                     <p>Potential PDP.</p>
                     <p>Credit: Amara/Wikipedia (CC)</p>
                     </div>
-                <div class="table-cell">
+                <div>
                     <img src="./img/Hale_bopp.jpg" alt="">
                     <p>Comet Hale Bopp.</p>
                     <p>Credit: Jerry Lodriguss</p>
                 </div>
-                </div>
             </div>
+           
+        </div>
         </div>
     </div>
-    <div id="DustToPebblePopup" class="modal">
-        <div id="DustToPebbleBackground" class="popup-background"></div>
-        <div id="DustPebbleContent" class="modal-wrap modal-wrap-non-credit">
+    <div id="dustToPebblePopup" class="modal">
+        <div id="dustToPebbleBackground" class="popup-background"></div>
+        <div id="dustPebbleContent" class="modal-wrap modal-wrap-non-credit">
             <h1>From Dust to Pebbles</h1>
-            <div class="table">
-                <div class="table-row">
-                    <div class="table-cell">
-                        <ul style="position:relative; top:-145px;"> 
-                            <li>Dust particles collide at low speed. </li>
-                            <li>Upon collision, dust particles stick.</li>
-                            <li>Successive sticking events lead to fractal agglomerates.	</li>
-                            <li>Collision of large fractals can lead to compaction.</li>
-                            <li>Compact agglomerates do not stick, but bounce off in collisions.</li>
-                            <li>Growth stops at mm to cm.</li>
-                            <li>mm- to cm-sized compact agglomerates are called pebbles.</li>
-                        </ul>
+            <div class="popupContent">
+                <div class="myGrid" style="grid-template-columns: 55% 27%; gap: 10%;">
+                    <ul>
+                        <li>Dust particles collide at low speed. </li>
+                        <li>Upon collision, dust particles stick.</li>
+                        <li>Successive sticking events lead to fractal agglomerates.	</li>
+                        <li>Collision of large fractals can lead to compaction.</li>
+                        <li>Compact agglomerates do not stick, but bounce off in collisions.</li>
+                        <li>Growth stops at mm to cm.</li>
+                        <li>mm- to cm-sized compact agglomerates are called pebbles.</li>
+                    </ul>
+                    <div class="centeredText small">
+                        <div>
+                            <video loop autoplay controls src="/img/media1.mp4"> </video>
+                            <p>Scan through a fractal agglomerate grown in a suborbital flight.</p>
+                            <p>Credit: ???</p>
+                        </div>
+                        <div>
+                            <video loop autoplay controls src="/img/collision.mp4" > </video>
+                            <p>Successive sticking events in a drop tower experiment.</p>
+                            <p>Credit: ???</p>
+                        </div>
                     </div>
-                    <div class="table-cell video-cell" style="width:200px;">
-                        <video loop autoplay controls src="/img/collision.mp4" > </video>
-                        <p>Successive sticking events in a drop tower experiment.</p>
-                        <p>Credit: IGEP</p>
-                        <video loop autoplay controls src="/img/media1.mp4"> </video>
-                        <p>Scan through a fractal agglomerate grown in a suborbital flight.</p>
-                        <p>Credit: IGEP</p>
-                    </div>  
                 </div>
             </div>
         </div>
@@ -83,58 +88,58 @@
     <div id="pebblesPopup" class="modal">
         <div id="pebblesBackground" class="popup-background"></div>
         <div id="pebblesContent" class="modal-wrap modal-wrap-non-credit">
-        <h1>Pebbles</h1>
-        <ul>
-            <li>Their size is typically mm to cm.</li>
-            <li>They can be observed by Radio Telescopes (ALMA) in other protoplanetary discs.</li>
-            <li>Their porosity is ~65%.</li>
-            <li>Pebbles have been directly observed on the surface of Comet 67P.</li>
-        </ul>
-
-        <div class="table">
-            <div class="table-row">
-                <div class="table-cell">
-                <img src="./img/pebble_simulation.png" alt="">
-                <p>Computer modell of a pebble.</p>
-                <p>Credit: ???</p>
+            <h1>Pebbles</h1>
+            <div class="popupContent">
+                <div class="myGrid" style="grid-template-columns: 1fr;">
+                    <ul>
+                        <li>Their size is typically mm to cm.</li>
+                        <li>Pebbles can be observed by Radio Telescopes (ALMA) in other protoplanetary discs.</li>
+                        <li>Their porosity is ~65%.</li>
+                        <li>Pebbles have been directly observed on the surface of Comet 67P.</li>
+                    </ul>
                 </div>
-                <div class="table-cell">
-                <img src="./img/pebble_foto.jpg" alt="">
-                <p>Silica dust pebbles under the microscope.</p>
-                <p>Credit: B. Gundlach</p>
+                <div class="myGrid centeredGrid centeredText small" style="grid-template-columns: 20% 20% 20% 20%; gap: 5%;">
+                    <div>
+                        <img src="./img/pebble_simulation.png" alt="">
+                        <p>Computer modell of a pebble.</p>
+                        <p>Credit: ???</p>
+                    </div>
+                    <div>
+                        <img src="./img/pebble_foto.jpg" alt="">
+                        <p>Silica dust pebbles under the microscope.</p>
+                        <p>Credit: B. Gundlach</p>
+                    </div>
+                    <div>
+                        <img src="./img/alma.jpg" alt="">
+                        <p>Protoplanetary disks observed by ALMA radio telescope.</p>
+                        <p>Credit: ALMA (need better ref)</p>
+                    </div>
+                    <div>
+                        <img src="./img/chury_pebbles.jpg" alt="">
+                        <p>Green marked pebbles photographed on comet 67P.</p>
+                        <p>Credit: Poulet et al., 2016</p>
+                    </div>
                 </div>
-                <div class="table-cell">
-                <img src="./img/alma.jpg" alt="">
-                <p>Protoplanetary disks observed by ALMA radio telescope.</p>
-                <p>Credit: ALMA (need better ref)</p>
-                </div>
-                <div class="table-cell">
-                <img src="./img/chury_pebbles.jpg" alt="">
-                <p>Green marked pebbles photographed on comet 67P.</p>
-                <p>Credit: Poulet et al., 2016</p>
-                </div>
-                
-            
-            </div>
             </div>
         </div>
     </div>
-    <div id="PebbleToPlanetesimalPopup" class="modal">
-        <div id="PebbleToPlanetesimalBackground" class="popup-background"></div>
-        <div id="PebblePlanetesimalContent" class="modal-wrap modal-wrap-non-credit">
+    <div id="pebblesToPlanetesimalPopup" class="modal">
+        <div id="pebblesToPlanetesimalBackground" class="popup-background"></div>
+        <div id="pebblesToPlanetesimalContent" class="modal-wrap modal-wrap-non-credit">
             <h1>From Pebbles to Planetesimals</h1>
-            <div class="table">
-                <div class="table-row">
-                    <div class="table-cell">
-                    <ul style="position:relative; top:-280px;">
+            <div class="popupContent">
+                <div class="myGrid" style="grid-template-columns: 50% 45%; gap: 0%;">
+                    <ul>
                         <li>Pebbles cannot grow any further by collisional sticking.</li>
                         <li>Pebbles are locally and spatially concentrated by hydrodynamic effects.</li>
                         <li>Upon reaching a critical concentration, pebble clouds collapse under their own gravity and form planetesimals.</li>
-                    </ul></div>
-                    <div class="table-cell video-cell" style="width:300px">
-                        <video loop controls autoplay src="/img/planetesimal_notitle.mp4"> </video>
-                        <p>Simulation of the concentration of pebbles via the so-called streaming instability.</p>
-                        <a href="https://sites.google.com/view/planet-formation-group/home" target="_blank"><p>Credit: Johansen et al. 2007</p></a>
+                    </ul>
+                    <div class="centeredText small">
+                        <div>
+                            <video loop controls autoplay src="/img/planetesimal_notitle.mp4"> </video>
+                            <p>Simulation of the concentration of pebbles <br> via the so-called streaming instability.</p>
+                            <a href="https://sites.google.com/view/planet-formation-group/home" target="_blank"><p>Credit: Johansen et al. 2007</p></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -143,9 +148,9 @@
     <div id="planetesimalPopup" class="modal">
         <div id="planetesimalBackground" class="popup-background"></div>
         <div id="planetesimalContent" class="modal-wrap modal-wrap-non-credit">
-        <h1>Planetesimals</h1>
-        <div class="table">
-            <div class="table-row">
+            <h1>Planetesimals</h1>
+            <div class="popupContent">
+                <div class="myGrid arrokothBackground" style="grid-template-columns: 1fr;">
                     <ul>
                         <li>Planetesimals are ~km-sized objects, which is the critical size to attract material by its own gravity.</li>
                         <li>They can be observed today as comets, asteroids, or trans-Neptunian objects.</li>
@@ -154,99 +159,181 @@
                         <li>Some planetesimals are called “rubble piles”, which means that a catastrophic impact has destroyed the original object, but thanks to gravity, the material reassembled to form a new body, the rubble pile planetesimal.</li>
                         <li>Planetesimals are the seeds for the further growth of larger objects in a planetary system.</li>
                     </ul>
+                </div>
+                <div class="myGrid centeredText small" style="grid-template-columns: 100%;">
+                    <div>
+                        <p>Photo of Arrokoth made by the New Horizons space craft (Credit: NASA)</p>
+                    </div>
+                </div>
             </div>
-            <div class="table-row">
-                    <img src="./img/arrokoth.png" alt="">
-                    <p>Photo of Arrokoth made by the New Horizons space craft.</p>
-                        <p>Credit: NASA</p>
+        
+                    <!-- <img src="./img/arrokoth.png" alt=""> -->
+        </div>
+    </div>
+    <div id="smallBodiesPopup" class="modal">
+        <div id="smallBodiesBackground" class="popup-background"></div>
+        <div id="smallBodiesContent" class="modal-wrap modal-wrap-non-credit">
+            <h1>Processes to small bodies</h1>
+            <div class="popupContent">
+                <div class="myGrid" style="grid-template-columns: 55% 45%; gap: 0%;">
+                    <div>
+                        <p>Several processes are acting on planetesimals after their formation, which lead to the different types of small bodies, we observe today in the solar system.</p>
+                        <ol>
+                            <li>Collisions can lead to cratering, compaction, fragmentation and heating.</li>
+                            <li>The decay of radioactive isotopes lead to heating of the material.</li>
+                            <li>Interaction with large bodies and several other effects can change the orbit of the body.</li>
+                            <li>If material gets heated, the material can be differentiated, ices can sublimate and the structure can be altered.</li>
+                        </ol>
+                    </div>
+                    <div style="display:flex; align-items:center;">
+                        <img src="./img/small_body_evolution.png" alt="">
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
+    <div id="asteroidPopup" class="modal">
+        <div id="asteroidBackground" class="popup-background"></div>
+        <div id="asteroidContent" class="modal-wrap modal-wrap-non-credit">
+            <h1>Asteroids & Kuiper-Belt objects</h1>
+            <div class="popupContent">
+                <div class="myGrid" style="grid-template-columns: 63% 30%; gap: 0%;">
+                    <ul>
+                        <li>Asteroids are concentrated in the asteroid belt between the orbit of Mars and Jupiter, but there are also several near the Earth (Near-Earth-Asteroids, NEA).</li>
+                        <li>The Kuiper belt is located beyond the orbit of Neptune.</li>
+                        <li>Asteroids &lt 100 km and KBOs &lt X km are the product of collisions.</li>
+                        <li>Asteroids &gt 100 km and KBOs &gt X km should be planetesimals which survived the collisional evolution.</li>
+                        <li>There are several types of asteroids, distinguished by their material composition and other properties and several classes of KBO which mainly differ in orbital properties.</li>
+                    </ul>
+                    <div>
+                        <div style="position:relative; left:-25%; top:-8%; z-index:2">
+                            <img src="./img/arrokoth.png" style="width:110%;" alt="">
+                            <p class="centeredText small" style="position:absolute; left:98%; top:20%;">NASA/JHUAPL/SWRI<br>Roman Tkachenko</p>
+                        </div>
+                        <div style="position:relative; left:55%; top:-15%; z-index:1">
+                            <img src="./img/Global_LORRI_mosaic_of_Pluto_in_true_colour.jpg" style="position:relative; width:60%;" alt="">
+                            <p class="centeredText small" style="position:absolute; left:-50%; top:30%;">NASA/JHUAPL/SWRI</p>
+                        </div>
+                        <div style="position:relative; left:-25%; top:-15%; z-index:0">
+                            <img src="./img/Asteroidsscale.jpg" style="position:relative; width:140%;" alt="">
+                            <p class="centeredText small" style="position:absolute; width:100%; left:20%; top:95%;">NASA/JPL-Caltech/JAXA/ESA</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="cometPopup" class="modal">
+        <div id="cometBackground" class="popup-background"></div>
+        <div id="cometContent" class="modal-wrap modal-wrap-non-credit">
+            <h1>Comets</h1>
+            <div class="popupContent">
+                <div class="myGrid" style="grid-template-columns: 68% 32%;">
+                    <ul>
+                        <li>Comets have a nucleus and orbit the sun on elliptical orbits. When they approach the sun, they can form a coma and a tail.</li>
+                        <li>The coma is a like a cloud of dust and gas around the nucleus. Due to the heat near the sun, ices in the nucleus change into the gas phase and on the way out, the gas ejects dust.</li>
+                        <li>The tail is dust and gas blown away by the solar wind. </li>
+                        <li>Comets are believed to be among the less altered planetesimals. They seem to have avoided heating in the past, otherwise not so many ices would be left today.</li>
+                        <li>But there are several open questions and its not clear which processes acted to form comets from planetesimals.</li>
+                    </ul>
+                    <div class="centeredText small">
+                        <div>
+                            <img src="./img/chury.jpg" style="width:100%;" alt="">
+                            <p>ESA/Rosetta/NAVCAM, CC BY-SA IGO 3.0</p>
+                        </div>
+                        <div>
+                            <img src="./img/Hale_Bopp_2.jpg" style="width:100%;" alt="">
+                            <p><a href="https://www.usno.navy.mil/pao/HBPIX.html">Geoff Chester</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="planetesimalToEarthPopup" class="modal">
+        <div id="planetesimalToEarthBackground" class="popup-background"></div>
+        <div id="planetesimalToEarthContent" class="modal-wrap modal-wrap-non-credit">
+            <h1></h1>
+            <div class="popupContent">
+            </div>
+        </div>
+    </div>
+    <div id="earthPopup" class="modal">
+        <div id="earthBackground" class="popup-background"></div>
+        <div id="earthContent" class="modal-wrap modal-wrap-non-credit">
+            <h1></h1>
+            <div class="popupContent">
+            </div>
+        </div>
+    </div>
+    <div id="earthToNeptunePopup" class="modal">
+        <div id="earthToNeptuneBackground" class="popup-background"></div>
+        <div id="earthToNeptuneContent" class="modal-wrap modal-wrap-non-credit">
+            <h1></h1>
+            <div class="popupContent">
+            </div>
+        </div>
+    </div>
+    <div id="neptunePopup" class="modal">
+        <div id="neptuneBackground" class="popup-background"></div>
+        <div id="neptuneContent" class="modal-wrap modal-wrap-non-credit">
+            <h1></h1>
+            <div class="popupContent">
+            </div>
+        </div>
+    </div>
+    <div id="neptuneToJupiterPopup" class="modal">
+        <div id="neptuneToJupiterBackground" class="popup-background"></div>
+        <div id="neptuneToJupiterContent" class="modal-wrap modal-wrap-non-credit">
+            <h1></h1>
+            <div class="popupContent">
+            </div>
+        </div>
+    </div>
+    <div id="jupiterPopup" class="modal">
+        <div id="jupiterBackground" class="popup-background"></div>
+        <div id="jupiterContent" class="modal-wrap modal-wrap-non-credit">
+            <h1></h1>
+            <div class="popupContent">
+            </div>
         </div>
     </div>
 
 
-    <svg preserveAspectRatio="none" id="mySVG" width viewBox="0 0 1728 1152">
+
+    <svg preserveAspectRatio="none" id="mySVG" viewBox="0 0 1728 1152">
         <defs>
             <g id="pathMasks"></g>
             <g id="textPaths"></g>
         </defs>
         <g id="displayPaths">
-            <g id="dustArea">
-                <path id="displayPath0" d="
-                    M 15 250 
-                    A 120 75 0 0 1 255 250 
-                    A 120 75 0 0 1 15 250 
-                "></path>
-            </g>
-            <path id="displayPath1" d="
-                M 199 314 
-                C 7 367 -51 553 167 554  
-            "></path>
-            <g id="transition0Area">
-                <path id="displayPath2" d="
-                    M 167 554
-                    L 167 513 
-                    A 15 15 90 0 1 182 498 
-                    L 332 498 
-                    A 15 15 90 0 1 347 513 
-                    L 347 554
-                "></path>
-                <path id="displayPath3" d="
-                    M 167 554 
-                    L 167 595 
-                    A 15 15 90 0 0 182 610 
-                    L 332 610 
-                    A 15 15 90 0 0 347 595 
-                    L 347 554 
-                "></path>
-            </g>
-            <path id="displayPath4" d="
-                M 347 554
-                C 450 554 450 636 553 636 
-            "></path>
-            <g id="pebblesArea">
-                <path id="displayPath5" d="
-                    M 553 636
-                    A 120 75 0 0 1 793 636
-                "></path>
-                <path id="displayPath6" d="
-                    M 553 636
-                    A 120 75 0 0 0 793 636
-                "></path>
-            </g>
-            <path id="displayPath7" d="
-                M 793 636
-                C 901 636 901 676 1009 676
-            "></path>
-            <g id="transition1Area">
-                <path id="displayPath8" d="
-                    M 1009 676
-                    L 1009 635
-                    A 15 15 90 0 1 1024 620
-                    L 1242 620
-                    A 15 15 90 0 1 1257 635
-                    L 1257 676
-                "></path>
-                <path id="displayPath9" d="
-                    M 1009 676
-                    L 1009 717
-                    A 15 15 90 0 0 1024 732
-                    L 1242 732
-                    A 15 15 90 0 0 1257 717
-                    L 1257 676
-                "></path>
-            </g>
-            <path id="displayPath10" d="
-                M 1257 676
-                C 1365 676 1365 716 1473 716
-            "></path>
-            <g id="planetesimalArea">
-                <path id="displayPath11" d="
-                    M 1473 716
-                    A 120 75 0 0 1 1713 716
-                    A 120 75 0 0 1 1473 716
-                "></path>
-            </g>
+            <g id="dustArea" class="clickable"><path id="displayPath0" d="M 242 191 a 120 75 0 0 1 240 0 a 120 75 0 0 1 -240 0 "></path></g>
+            <g id="dustToPebbleArea" class="clickable"><path id="displayPath2" d="M 182 251 l -75 0 a 15 15 90 0 0 -15 15 l 0 41 "></path><path id="displayPath3" d="M 182 251 l 75 0 a 15 15 90 0 1 15 15 l 0 82 a 15 15 90 0 1 -15 15 l -150 0 a 15 15 0 0 1 -15 -15 l 0 -41 "></path></g>
+            <g id="pebblesArea" class="clickable"><path id="displayPath5" d="M 92 517 a 120 75 0 0 1 240 0 "></path><path id="displayPath6" d="M 92 517 a 120 75 0 0 0 240 0 "></path></g>
+            <g id="pebblesToPlanetesimalArea" class="clickable"><path id="displayPath8" d="M 472 529 l 0 -41 a 15 15 90 0 1 15 -15 l 218 0 a 15 15 90 0 1 15 15 l 0 41 "></path><path id="displayPath9" d="M 472 529 l 0 41 a 15 15 90 0 0 15 15 l 218 0 a 15 15 90 0 0 15 -15 l 0 -41 "></path></g>
+            <g id="planetesimalArea" class="clickable"><path id="displayPath11" d="M 860 549 a 120 75 0 0 1 240 0 "></path><path id="displayPath12" d="M 860 549 a 120 75 0 0 0 240 0 "></path></g>
+            <g id="smallBodiesArea" class="clickable"><path id="displayPath14" d="M 1242 438 l -109 0 a 15 15 90 0 1 -15 -15 l 0 -82 a 15 15 90 0 1 15 -15 l 109 0 "></path><path id="displayPath15" d="M 1242 438 l 109 0 a 15 15 90 0 0 15 -15 l 0 -82 a 15 15 90 0 0 -15 -15 l -109 0 "></path></g>
+            <g id="asteroidArea" class="clickable"><path id="displayPath17" d="M 1576 427 a 120 75 0 0 1 0 150 a 120 75 0 0 1 0 -150 "></path></g>
+            <g id="cometArea" class="clickable"><path id="displayPath19" d="M 1065 205 a 120 75 0 0 0 -240 0 a 120 75 0 0 0 240 0 "></path></g>
+            <g id="planetesimalToEarthArea" class="clickable"><path id="displayPath21" d="M 1100 730 l 0 -41 a 15 15 90 0 1 15 -15 l 215 0 a 15 15 90 0 1 15 15 l 0 41 "></path><path id="displayPath22" d="M 1100 730 l 0 41 a 15 15 90 0 0 15 15 l 215 0 a 15 15 90 0 0 15 -15 l 0 -41 "></path></g>
+            <g id="earthArea" class="clickable"><path id="displayPath24" d="M 1550 755 a 120 75 0 0 1 0 150 "></path><path id="displayPath25" d="M 1550 755 a 120 75 0 0 0 0 150 "></path></g>
+            <g id="earthToNeptuneArea" class="clickable"><path id="displayPath27" d="M 1480 1010 l 0 -41 a 15 15 90 0 0 -15 -15 l -215 0 a 15 15 90 0 0 -15 15 l 0 41 "></path><path id="displayPath28" d="M 1480 1010 l 0 41 a 15 15 90 0 1 -15 15 l -215 0 a 15 15 90 0 1 -15 -15 l 0 -41 "></path></g>
+            <g id="neptuneArea" class="clickable"><path id="displayPath30" d="M 1110 990 a 120 75 0 0 0 -240 0 "></path><path id="displayPath31" d="M 1110 990 a 120 75 0 0 1 -240 0 "></path></g>
+            <g id="neptuneToJupiterArea" class="clickable"><path id="displayPath33" d="M 745 960 l 0 -41 a 15 15 90 0 0 -15 -15 l -215 0 a 15 15 90 0 0 -15 15 l 0 41 "></path><path id="displayPath34" d="M 745 960 l 0 41 a 15 15 90 0 1 -15 15 l -215 0 a 15 15 90 0 1 -15 -15 l 0 -41 "></path></g>
+            <g id="jupiterArea" class="clickable"><path id="displayPath36" d="M 404 880 a 161 161 0 0 0 -323 0 a 161 161 0 0 0 323 0"></path></g>
+            <path id="displayPath1" class="movingPath" d="M 242 191 c -40 0 -60 20 -60 60 "></path>
+            <path id="displayPath4" class="movingPath" d="M 92 307 c -115 0 -115 210 0 210 "></path>
+            <path id="displayPath7" class="movingPath" d="M 332 517 c 70 0 70 12 140 12 "></path>
+            <path id="displayPath10" class="movingPath" d="M 720 529 c 70 0 70 20 140 20 "></path>
+            <path id="displayPath13" class="movingPath" d="M 1100 549 c 100 0 142 -11 142 -111 "></path>
+            <path id="displayPath16" class="movingPath" d="M 1366 382 c 70 0 210 4 210 45 "></path>
+            <path id="displayPath18" class="movingPath" d="M 1242 326 c 0 -100 -77 -121 -177 -121 "></path>
+            <path id="displayPath20" class="movingPath" d="M 980 624 c 0 80 40 106 120 106 "></path>
+            <path id="displayPath23" class="movingPath" d="M 1345 730 c 70 0 205 -2 205 25 "></path>
+            <path id="displayPath26" class="movingPath" d="M 1550 905 c 0 50 0 105 -70 105 "></path>
+            <path id="displayPath29" class="movingPath" d="M 1235 1010 c -62 0 -62 -20 -125 -20 "></path>
+            <path id="displayPath32" class="movingPath" d="M 870 990 c -62 0 -62 -30 -125 -30 "></path>
+            <path id="displayPath35" class="movingPath" d="M 500 960 c -48 0 -48 -80 -96 -80 "></path>
         </g>
         <g id="clickableAreas"></g>
         <g id="svgText"></g>
@@ -276,14 +363,9 @@
 
 <script type="module">
     import myMain from './scripts/tour.js';
+
     $(document).ready(function(){
         myMain();
-        let r = document.querySelector(':root');
-        r.style.setProperty('--modalScale', `${$(window).width() / 1750}`);
-        $(window).bind('resize', function()
-        {
-            r.style.setProperty('--modalScale', `${$(window).width() / 1750}`);
-        });
     });
 </script>
 
