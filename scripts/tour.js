@@ -8,19 +8,30 @@ function myMain(){
     r.style.setProperty('--dashLength', `${dashLength}`)
 
     var img=new Image();
-    img.src="img/exoplanets-disks.jpg";
+    img.src="./img/exoplanets-disks.jpg";
     img.onload=function(){
         ctx.drawImage(this,0,0);
         var titleImg = new Image();
         titleImg.src = "./img/Title.png";
         titleImg.onload=function(){
-            ctx.drawImage(titleImg, 250, 25, 1250, 1250*titleImg.height/titleImg.width);
+            ctx.font = '68px Poppins, sans-serif';
+            ctx.fillStyle = '#ffffff';
+            ctx.fillText('Interactive tour of planet formation', 250, 75);
         }
         addCanvasForArea("dust", "./img/IDP_with_text.jpg", this.width, this.height);
         addCanvasForArea("pebbles", "./img/Pebble_Labor_2.jpg", this.width, this.height);
         addCanvasForArea("planetesimal", "./img/arrokoth_cut.png", this.width, this.height);
+        addCanvasForArea("asteroid", "./img/Vesta_Full-Frame.jpg", this.width, this.height);
+        addCanvasForArea("comet", "./img/67P-July-20.jpg", this.width, this.height);
+        addCanvasForArea("earth", "./img/638831main_globe_east_2048.jpg", this.width, this.height);
+        addCanvasForArea("neptune", "./img/Neptune.jpg", this.width, this.height);
+        addCanvasForArea("jupiter", "./img/nasa-jupiter1.png", this.width, this.height);
         addCanvasForArea("dustToPebble", "./img/transition_0.png", this.width, this.height);
         addCanvasForArea("pebblesToPlanetesimal", "./img/transition_1.png", this.width, this.height);
+        addCanvasForArea("smallBodies", "./img/transition_2.png", this.width, this.height);
+        addCanvasForArea("planetesimalToEarth", "./img/transition_3.png", this.width, this.height);
+        addCanvasForArea("earthToNeptune", "./img/transition_4.png", this.width, this.height);
+        addCanvasForArea("neptuneToJupiter", "./img/transition_5.png", this.width, this.height);
         
         let areas = document.querySelectorAll("#displayPaths > g")
         
@@ -45,13 +56,6 @@ function myMain(){
                 });
             }
         }
-
-        // let areaName = "comet";
-        // let itemPopup = document.getElementById(`${areaName}Popup`);
-        // let itemBackground = document.getElementById(`${areaName}Background`);
-        // itemPopup.style.opacity = 1.0;
-        // itemPopup.style.pointerEvents = "all";
-        // itemBackground.style.pointerEvents = "all";
     }
 }
 
@@ -76,16 +80,28 @@ function addCanvasForArea(areaName, imgName, canvasWidth, canvasHeight)
     ctx.filter = "blur(5px)";
     ctx.fill(p);
     ctx.filter = "none";
-    ctx.globalCompositeOperation = 'source-in'
+    ctx.globalCompositeOperation = 'source-in';
     var img = new Image();
     img.src = imgName;
     img.onload=function(){
         let bBox = myArea.getBBox();
         let pRatio = this.width / this.height;
+        let draw = {};
         if(pRatio > bBox.width / bBox.height)
-            ctx.drawImage(img, bBox.x, bBox.y, bBox.height * pRatio, bBox.height);
+        {
+            draw.width = bBox.height * pRatio;
+            draw.height = bBox.height;
+            draw.x = bBox.x - 0.5 * (draw.width - bBox.width);
+            draw.y = bBox.y;
+        }
         else
-            ctx.drawImage(img, bBox.x, bBox.y, bBox.width, bBox.width / pRatio);
+        {
+            draw.width = bBox.width;
+            draw.height = bBox.width / pRatio;
+            draw.x = bBox.x;
+            draw.y = bBox.y - 0.5 * (draw.height - bBox.height);
+        }
+        ctx.drawImage(img, draw.x, draw.y, draw.width, draw.height);
     }
     return canvas;
 }

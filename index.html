@@ -8,7 +8,6 @@
         border: 1px solid black;
       }
     </style>
-    <!-- <script type="module" src="main.js"></script> -->
     <link rel='stylesheet' href='./css/tour.css'>
 
     <link rel='stylesheet' href='./css/styles_popup.css'>
@@ -71,12 +70,12 @@
                     </ul>
                     <div class="centeredText small">
                         <div>
-                            <video loop autoplay controls src="/img/media1.mp4"> </video>
+                            <video loop autoplay controls src="./img/media1.mp4"> </video>
                             <p>Scan through a fractal agglomerate grown in a suborbital flight.</p>
                             <p>Credit: ???</p>
                         </div>
                         <div>
-                            <video loop autoplay controls src="/img/collision.mp4" > </video>
+                            <video loop autoplay controls src="./img/collision.mp4" > </video>
                             <p>Successive sticking events in a drop tower experiment.</p>
                             <p>Credit: ???</p>
                         </div>
@@ -136,7 +135,7 @@
                     </ul>
                     <div class="centeredText small">
                         <div>
-                            <video loop controls autoplay src="/img/planetesimal_notitle.mp4"> </video>
+                            <video loop controls autoplay src="./img/planetesimal_notitle.mp4"> </video>
                             <p>Simulation of the concentration of pebbles <br> via the so-called streaming instability.</p>
                             <a href="https://sites.google.com/view/planet-formation-group/home" target="_blank"><p>Credit: Johansen et al. 2007</p></a>
                         </div>
@@ -166,8 +165,6 @@
                     </div>
                 </div>
             </div>
-        
-                    <!-- <img src="./img/arrokoth.png" alt=""> -->
         </div>
     </div>
     <div id="smallBodiesPopup" class="modal">
@@ -197,7 +194,7 @@
         <div id="asteroidContent" class="modal-wrap modal-wrap-non-credit">
             <h1>Asteroids & Kuiper-Belt objects</h1>
             <div class="popupContent">
-                <div class="myGrid" style="grid-template-columns: 63% 30%; gap: 0%;">
+                <div class="myGrid" style="grid-template-columns: 63% 37%; gap: 0%; height:100%;">
                     <ul>
                         <li>Asteroids are concentrated in the asteroid belt between the orbit of Mars and Jupiter, but there are also several near the Earth (Near-Earth-Asteroids, NEA).</li>
                         <li>The Kuiper belt is located beyond the orbit of Neptune.</li>
@@ -205,18 +202,18 @@
                         <li>Asteroids &gt 100 km and KBOs &gt X km should be planetesimals which survived the collisional evolution.</li>
                         <li>There are several types of asteroids, distinguished by their material composition and other properties and several classes of KBO which mainly differ in orbital properties.</li>
                     </ul>
-                    <div>
-                        <div style="position:relative; left:-25%; top:-8%; z-index:2">
-                            <img src="./img/arrokoth.png" style="width:110%;" alt="">
-                            <p class="centeredText small" style="position:absolute; left:98%; top:20%;">NASA/JHUAPL/SWRI<br>Roman Tkachenko</p>
+                    <div style="position:relative; width:100%; height:100%;">
+                        <div style="position:absolute; top:-5%; left:-10%; height:29%;">
+                            <img src="./img/arrokoth.png" alt="">
+                            <p class="centeredText small" style="position:absolute; right:-52%; top:14%;">NASA/JHUAPL/SWRI<br>Roman Tkachenko</p>
                         </div>
-                        <div style="position:relative; left:55%; top:-15%; z-index:1">
-                            <img src="./img/Global_LORRI_mosaic_of_Pluto_in_true_colour.jpg" style="position:relative; width:60%;" alt="">
-                            <p class="centeredText small" style="position:absolute; left:-50%; top:30%;">NASA/JHUAPL/SWRI</p>
+                        <div style="position:absolute; top:19%; right:35%; height:33%; z-index:1;">
+                            <img src="./img/Global_LORRI_mosaic_of_Pluto_in_true_colour.png" alt="">
+                            <p class="centeredText small" style="position:absolute; right:-47%; top:30%;">NASA/JHUAPL<br>SWRI</p>
                         </div>
-                        <div style="position:relative; left:-25%; top:-15%; z-index:0">
-                            <img src="./img/Asteroidsscale.jpg" style="position:relative; width:140%;" alt="">
-                            <p class="centeredText small" style="position:absolute; width:100%; left:20%; top:95%;">NASA/JPL-Caltech/JAXA/ESA</p>
+                        <div style="position:absolute; bottom:0%; right:0%; width:120%; height:50%;">
+                            <img src="./img/Asteroidsscale.jpg" alt="">
+                            <p class="centeredText small" style="position:absolute; left:-10%; bottom:0%;">NASA/JPL-Caltech<br>/JAXA/ESA</p>
                         </div>
                     </div>
                 </div>
@@ -238,11 +235,11 @@
                     </ul>
                     <div class="centeredText small">
                         <div>
-                            <img src="./img/chury.jpg" style="width:100%;" alt="">
+                            <img src="./img/chury.jpg" alt="">
                             <p>ESA/Rosetta/NAVCAM, CC BY-SA IGO 3.0</p>
                         </div>
                         <div>
-                            <img src="./img/Hale_Bopp_2.jpg" style="width:100%;" alt="">
+                            <img src="./img/Hale_Bopp_2.jpg" alt="">
                             <p><a href="https://www.usno.navy.mil/pao/HBPIX.html">Geoff Chester</a></p>
                         </div>
                     </div>
@@ -253,48 +250,167 @@
     <div id="planetesimalToEarthPopup" class="modal">
         <div id="planetesimalToEarthBackground" class="popup-background"></div>
         <div id="planetesimalToEarthContent" class="modal-wrap modal-wrap-non-credit">
-            <h1></h1>
+            <h1>From Planetesimals to Earth-like Planets</h1>
             <div class="popupContent">
+                <div class="myGrid" style="grid-template-columns: 57% 43%;">
+                    <ul class="rightIndent">
+                        Gravitational accretion
+                        <li>The planetesimals accrete material from the surrounding planetary disk.</li>
+                        Gravitational focusing
+                        <li>Larger objects deflect smaller objects because of their gravity, which increases the collision probability.</li>
+                        Long-range gravitational forces
+                        <li>Long-range gravitational forces lead to a successive change of the orbital parameters of the bodies until their orbits intersect with another.</li>
+                        Planetary Migration
+                        <li>The interaction between the forming planet and the PPD causes a momentum transfer, which leads to a drift motion of the planet through the system.</li>
+                    </ul>
+                    <div style="position:relative; width: 100%; height:100%;">
+                        <div style="position:absolute; width:84%; left:13%; top:1%;">
+                            <img src="./img/gravitational_focussing.png" alt="">
+                        </div>
+                        <div style="position:absolute; width:59%; left:-6%; top:20%;">
+                            <img src="./img/real_apparent_size.png" alt="">
+                        </div>
+                        <div style="position:absolute; width:60%; left:-23%; top:48%;">
+                            <img src="./img/long_range_grav_forces.png" alt="">
+                        </div>
+                        <div style="width:59%; position: absolute; left:40%; top:50%">
+                            <img src="./img/planetary_migration.gif" style="width:100%;" alt="">
+                            <p class="small centeredText">P. Armitage</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <div id="earthPopup" class="modal">
         <div id="earthBackground" class="popup-background"></div>
         <div id="earthContent" class="modal-wrap modal-wrap-non-credit">
-            <h1></h1>
+            <h1>Earth-like Planets (Terrestrial Planets)</h1>
             <div class="popupContent">
+                <div class="myGrid" style="grid-template-columns: 50% 50%; gap: 0%; height:100%;">
+                    <ul>
+                        <li>Between ~0.05 and ~1 M<sub>E</sub></li>
+                        <li>Examples: Mercury, Venus, Earth, Mars</li>
+                        <li>Spherical shape because of gravity</li>
+                        <li>Differentiated</li>
+                        <li>Shell structure</li>
+                        <li>Solid (stony) surface</li>
+                        <li>With or without atmosphere</li>
+                    </ul>
+                    <div style="position:relative; width: 100%; height:100%;">
+                        <div>
+                            <p class="small centeredText">Wiki</p>
+                            <img src="./img/terrestrial_planets.jpeg" alt="">
+                        </div>
+                        <div style="width:70%; position: relative; left:10%;">
+                            <img src="./img/earth_nasa.jpeg" alt="">
+                            <p class="small centeredText">NASA/Apollo 17</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <div id="earthToNeptunePopup" class="modal">
         <div id="earthToNeptuneBackground" class="popup-background"></div>
         <div id="earthToNeptuneContent" class="modal-wrap modal-wrap-non-credit">
-            <h1></h1>
+            <h1>From Earth-like Planets to Neptune-like Planets</h1>
             <div class="popupContent">
+                <div class="myGrid" style="grid-template-columns: 50% 50%; gap: 0%; height:100%;">
+                    <ul>
+                        <li>Planetary cores of up to ~M<sub>E</sub></li>
+                        <li>Slow gas accretion</li>
+                        <li>Gas accretion stops due to dissipation of PPD</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
     <div id="neptunePopup" class="modal">
         <div id="neptuneBackground" class="popup-background"></div>
         <div id="neptuneContent" class="modal-wrap modal-wrap-non-credit">
-            <h1></h1>
+            <h1>Neptune-like Planets</h1>
             <div class="popupContent">
+                <div class="myGrid" style="grid-template-columns: 60% 40%; gap: 0%; height:100%;">
+                    <ul>
+                        <li>Between ~10 and ~20 M<sub>E</sub></li>
+                        <li>Examples: Uranus, Neptune</li>
+                        <li>Hydrogen/Helium atmosphere (max.: 20% of planetary mass)</li>
+                        <li>Mainly composed of heavier elements: Oxygen, Carbon, Nitrogen</li>
+                        <li>Massive water ocean beneath the atmosphere (clouds)</li>
+                        <li>Solid core</li>
+                    </ul>
+                    <div style="position:relative; width: 100%; height:100%;">
+                        <div style="width:70%; position: relative; left:20%;">
+                            <img src="./img/uranus.jpeg" alt="">
+                            <p class="small centeredText">NASA; Voyager 2</p>
+                        </div>
+                        <div style="width:70%; position: relative; left:20%;">
+                            <img src="./img/neptune.jpeg" alt="">
+                        </div>
+                        <div style="width:150%; position: absolute; left:-148%; top:53%; z-index:2;">
+                            <p class="small centeredText">Wiki</p>
+                            <img src="./img/planet_size_comparison.jpeg" alt="">
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
     <div id="neptuneToJupiterPopup" class="modal">
         <div id="neptuneToJupiterBackground" class="popup-background"></div>
         <div id="neptuneToJupiterContent" class="modal-wrap modal-wrap-non-credit">
-            <h1></h1>
+            <h1>From Neptune-like Planets to Jupiter-like Planets</h1>
             <div class="popupContent">
+                <div class="myGrid" style="grid-template-columns: 60% 35%; gap: 0%; height:100%;">
+                    <ul>
+                        <li>Fast formation of very massive cores by pebble accretion (> M<sub>E</sub>).</li>
+                        <li>These massive cores can create noticeable gaps in the PPD.</li>
+                        <li>When the gap forms, inward drift of material is halted and the gas envelope cool, which leads to a rapid accretion of the gas by the planetary core.</li>
+                        <li>Simulations show that the cores of gas giants can form beyond 20 AU.</li>
+                        </ul>
+                    <div style="position:relative; width: 100%; height:100%;">
+                        <div>
+                            <p class="small centeredText"><a href="https://ui.adsabs.harvard.edu/abs/2018MNRAS.480.4338L/abstract">https://ui.adsabs.harvard.edu/abs/2018MNRAS.480.4338L/abstract</a></p>
+                            <img src="./img/jupiter_formation_by_pebble_accretion.jpeg" alt="">
+                        </div>
+                        <br>
+                        <div>
+                            <img src="./img/pull_on_pebbles.jpeg" alt="">
+                            <p class="small centeredText">A. Johansen</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
     <div id="jupiterPopup" class="modal">
         <div id="jupiterBackground" class="popup-background"></div>
         <div id="jupiterContent" class="modal-wrap modal-wrap-non-credit">
-            <h1></h1>
+            <h1>Jupiter-like Planets (Gas Giants)</h1>
             <div class="popupContent">
+                <div class="myGrid" style="grid-template-columns: 1fr;">
+                    <ul>
+                        <li>Between ~100 and ~300 M<sub>E</sub></li>
+                        <li>Examples: Jupiter & Saturn</li>
+                        <li>Atmosphere (mainly composed of H and He) dominates planet mass</li>
+                        <li>(Fluid) metallic Hydrogen</li>
+                        <li>Solid core</li>
+                    </ul>
+                </div>
+                <div class="myGrid centeredGrid centeredText small" style="grid-template-columns: 45% 45%; gap: 0%;">
+                    <div>
+                        <img src="./img/gas_giant_comparison.png" alt="">
+                        <p><a href="http://solarsystem.nasa.gov/multimedia/display.cfm?IM_ID=180">http://solarsystem.nasa.gov/multimedia/display.cfm?IM_ID=180</a></p>
+                    </div>
+                    <div>
+                        <img src="./img/giants_of_the_solar_system.jpeg" alt="">
+                        <p><a href="https://www.nhm.ac.uk/discover/graphic-guide-to-our-solar-system.html">https://www.nhm.ac.uk/discover/graphic-guide-to-our-solar-system.html</a></p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -315,11 +431,11 @@
             <g id="smallBodiesArea" class="clickable"><path id="displayPath14" d="M 1242 438 l -109 0 a 15 15 90 0 1 -15 -15 l 0 -82 a 15 15 90 0 1 15 -15 l 109 0 "></path><path id="displayPath15" d="M 1242 438 l 109 0 a 15 15 90 0 0 15 -15 l 0 -82 a 15 15 90 0 0 -15 -15 l -109 0 "></path></g>
             <g id="asteroidArea" class="clickable"><path id="displayPath17" d="M 1576 427 a 120 75 0 0 1 0 150 a 120 75 0 0 1 0 -150 "></path></g>
             <g id="cometArea" class="clickable"><path id="displayPath19" d="M 1065 205 a 120 75 0 0 0 -240 0 a 120 75 0 0 0 240 0 "></path></g>
-            <g id="planetesimalToEarthArea" class="clickable"><path id="displayPath21" d="M 1100 730 l 0 -41 a 15 15 90 0 1 15 -15 l 215 0 a 15 15 90 0 1 15 15 l 0 41 "></path><path id="displayPath22" d="M 1100 730 l 0 41 a 15 15 90 0 0 15 15 l 215 0 a 15 15 90 0 0 15 -15 l 0 -41 "></path></g>
+            <g id="planetesimalToEarthArea" class="clickable"><path id="displayPath21" d="M 1085 730 l 0 -41 a 15 15 90 0 1 15 -15 l 245 0 a 15 15 90 0 1 15 15 l 0 41 "></path><path id="displayPath22" d="M 1085 730 l 0 41 a 15 15 90 0 0 15 15 l 245 0 a 15 15 90 0 0 15 -15 l 0 -41 "></path></g>
             <g id="earthArea" class="clickable"><path id="displayPath24" d="M 1550 755 a 120 75 0 0 1 0 150 "></path><path id="displayPath25" d="M 1550 755 a 120 75 0 0 0 0 150 "></path></g>
-            <g id="earthToNeptuneArea" class="clickable"><path id="displayPath27" d="M 1480 1010 l 0 -41 a 15 15 90 0 0 -15 -15 l -215 0 a 15 15 90 0 0 -15 15 l 0 41 "></path><path id="displayPath28" d="M 1480 1010 l 0 41 a 15 15 90 0 1 -15 15 l -215 0 a 15 15 90 0 1 -15 -15 l 0 -41 "></path></g>
+            <g id="earthToNeptuneArea" class="clickable"><path id="displayPath27" d="M 1495 1010 l 0 -41 a 15 15 90 0 0 -15 -15 l -245 0 a 15 15 90 0 0 -15 15 l 0 41 "></path><path id="displayPath28" d="M 1495 1010 l 0 41 a 15 15 90 0 1 -15 15 l -245 0 a 15 15 90 0 1 -15 -15 l 0 -41 "></path></g>
             <g id="neptuneArea" class="clickable"><path id="displayPath30" d="M 1110 990 a 120 75 0 0 0 -240 0 "></path><path id="displayPath31" d="M 1110 990 a 120 75 0 0 1 -240 0 "></path></g>
-            <g id="neptuneToJupiterArea" class="clickable"><path id="displayPath33" d="M 745 960 l 0 -41 a 15 15 90 0 0 -15 -15 l -215 0 a 15 15 90 0 0 -15 15 l 0 41 "></path><path id="displayPath34" d="M 745 960 l 0 41 a 15 15 90 0 1 -15 15 l -215 0 a 15 15 90 0 1 -15 -15 l 0 -41 "></path></g>
+            <g id="neptuneToJupiterArea" class="clickable"><path id="displayPath33" d="M 760 960 l 0 -41 a 15 15 90 0 0 -15 -15 l -245 0 a 15 15 90 0 0 -15 15 l 0 41 "></path><path id="displayPath34" d="M 760 960 l 0 41 a 15 15 90 0 1 -15 15 l -245 0 a 15 15 90 0 1 -15 -15 l 0 -41 "></path></g>
             <g id="jupiterArea" class="clickable"><path id="displayPath36" d="M 404 880 a 161 161 0 0 0 -323 0 a 161 161 0 0 0 323 0"></path></g>
             <path id="displayPath1" class="movingPath" d="M 242 191 c -40 0 -60 20 -60 60 "></path>
             <path id="displayPath4" class="movingPath" d="M 92 307 c -115 0 -115 210 0 210 "></path>
@@ -328,12 +444,12 @@
             <path id="displayPath13" class="movingPath" d="M 1100 549 c 100 0 142 -11 142 -111 "></path>
             <path id="displayPath16" class="movingPath" d="M 1366 382 c 70 0 210 4 210 45 "></path>
             <path id="displayPath18" class="movingPath" d="M 1242 326 c 0 -100 -77 -121 -177 -121 "></path>
-            <path id="displayPath20" class="movingPath" d="M 980 624 c 0 80 40 106 120 106 "></path>
-            <path id="displayPath23" class="movingPath" d="M 1345 730 c 70 0 205 -2 205 25 "></path>
-            <path id="displayPath26" class="movingPath" d="M 1550 905 c 0 50 0 105 -70 105 "></path>
-            <path id="displayPath29" class="movingPath" d="M 1235 1010 c -62 0 -62 -20 -125 -20 "></path>
-            <path id="displayPath32" class="movingPath" d="M 870 990 c -62 0 -62 -30 -125 -30 "></path>
-            <path id="displayPath35" class="movingPath" d="M 500 960 c -48 0 -48 -80 -96 -80 "></path>
+            <path id="displayPath20" class="movingPath" d="M 980 624 c 0 80 40 106 105 106 "></path>
+            <path id="displayPath23" class="movingPath" d="M 1360 730 c 70 0 190 -2 190 25 "></path>
+            <path id="displayPath26" class="movingPath" d="M 1550 905 c 0 50 0 105 -55 105 "></path>
+            <path id="displayPath29" class="movingPath" d="M 1220 1010 c -55 0 -55 -20 -110 -20 "></path>
+            <path id="displayPath32" class="movingPath" d="M 870 990 c -55 0 -55 -30 -110 -30 "></path>
+            <path id="displayPath35" class="movingPath" d="M 485 960 c -40 0 -40 -80 -81 -80 "></path>
         </g>
         <g id="clickableAreas"></g>
         <g id="svgText"></g>
@@ -341,7 +457,7 @@
 
     <div id="imgCanvases"></div>
 
-    <img id="creditsArea" src="img/credits.png" width="64" height="64"/>
+    <img id="creditsArea" src="./img/credits.png" width="64" height="64"/>
     <div id="creditsPopup" class="modal">
         <div id="creditsBackground" class="popup-background"></div>
         <div id="creditsContent" class="modal-wrap">
@@ -355,7 +471,6 @@
                     </ul>
             </div>
             </div>
-        </div>
         </div>
     </div>
 
