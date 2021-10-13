@@ -14,7 +14,7 @@ a {
     height: 66.666vw;
 }
 
-@media (min-aspect-ratio: 1.5) {
+@media (min-aspect-ratio: 3/2) {
     #container{
         left: calc(50vw - 75vh);
         top: 0;

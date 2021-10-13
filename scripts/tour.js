@@ -8,7 +8,7 @@ function myMain(){
     r.style.setProperty('--dashLength', `${dashLength}`)
 
     var img=new Image();
-    img.src="./img/exoplanets-disks.jpg";
+    img.src="img/exoplanets-disks.jpg";
     img.onload=function(){
         ctx.drawImage(this,0,0);
         var titleImg = new Image();
@@ -47,15 +47,32 @@ function myMain(){
                     itemPopup.style.opacity = 1.0;
                     itemPopup.style.pointerEvents = "all";
                     itemBackground.style.pointerEvents = "all";
+                    let popupVideos = document.querySelectorAll(`#${areaName}Popup video`);
+                    for(let videoId = 0; videoId < popupVideos.length; ++videoId)
+                    {
+                        popupVideos[videoId].play();
+                    }
                 });
 
                 itemBackground.addEventListener("click", function(){
                     itemPopup.style.opacity = 0;
                     itemPopup.style.pointerEvents = "none";
                     itemBackground.style.pointerEvents = "none";
+                    let popupVideos = document.querySelectorAll(`#${areaName}Popup video`);
+                    for(let videoId = 0; videoId < popupVideos.length; ++videoId)
+                    {
+                        popupVideos[videoId].pause();
+                    }
                 });
             }
         }
+
+        // let areaName = "jupiter";
+        // let itemPopup = document.getElementById(`${areaName}Popup`);
+        // let itemBackground = document.getElementById(`${areaName}Background`);
+        // itemPopup.style.opacity = 1.0;
+        // itemPopup.style.pointerEvents = "all";
+        // itemBackground.style.pointerEvents = "all";
     }
 }
 

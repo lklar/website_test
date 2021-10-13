@@ -118,7 +118,7 @@ video{
     height: auto;
 }
 
-@media (min-aspect-ratio: 1.5) {
+@media (min-aspect-ratio: 3/2) {
     body{
         font-size: 3vh;
     }
